@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cartActions } from "../../redux/cart/cartSlice";
@@ -11,7 +11,7 @@ const Checkout = () => {
   const [country, setCountry] = useState("");
   const [postCode, setPostCode] = useState("");
   const [address, setAddress] = useState("");
-  const [hasError, setHasError] = useState(true);
+  const [hasError] = useState(true);
 
   const { items, totalAmount } = useSelector((state) => state.cart);
   const token = useSelector((state) => state.auth.token);
@@ -40,9 +40,9 @@ const Checkout = () => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    if (hasError) {
-      return;
-    }
+    // if (hasError) {
+    //   return;
+    // }
 
     const orderData = {
       Items: items,
