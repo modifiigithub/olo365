@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 import logo from "../../assets/svgs/logo.svg"
+import { ReactNode } from "react"
 
-export default function Navbar() {
+export default function Navbar({ drawerButton }: {
+    drawerButton: ReactNode
+}) {
     return (
         <>
-            <nav className="bg-stone-800">
+            <nav className="bg-stone-800/90 backdrop-blur-xl sticky top-0 z-20">
                 <div className="container">
                     <div className="navbar py-3">
                         <div className="navbar-start">
@@ -44,7 +47,7 @@ export default function Navbar() {
                                         <span className="font-bold text-lg">8 Items</span>
                                         <span className="text-info">Subtotal: $999</span>
                                         <div className="card-actions">
-                                            <button className="btn btn-block">View cart</button>
+                                            {drawerButton}
                                         </div>
                                     </div>
                                 </div>
