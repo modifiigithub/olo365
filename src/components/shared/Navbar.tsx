@@ -15,7 +15,7 @@ export default function Navbar({ drawerButton }: {
     function handleLogout() {
         dispatch(userLoggedOut())
         localStorage.clear()
-        navigate("/login")
+        navigate("/")
     }
 
     return (
