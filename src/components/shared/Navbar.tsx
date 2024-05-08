@@ -10,15 +10,13 @@ export default function Navbar({ drawerButton }: {
 }) {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { device_token, user } = useAppSelector((state: RootState) => state?.auth);
+    const { device_token } = useAppSelector((state: RootState) => state?.auth);
 
     function handleLogout() {
         dispatch(userLoggedOut())
         localStorage.clear()
         navigate("/login")
     }
-
-    console.log(user)
 
     return (
         <>
