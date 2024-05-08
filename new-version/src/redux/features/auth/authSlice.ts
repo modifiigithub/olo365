@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
- interface IUser {
-    _id: string;
-    username: string;
+interface IUser {
+    id: number;
+    role_id: number;
+    name: string;
     email: string;
 }
 
 interface InitialState {
-    accessToken: undefined | string,
+    device_token: undefined | string,
     user: undefined | IUser,
 }
 
 const initialState: InitialState = {
-    accessToken: undefined,
+    device_token: undefined,
     user: undefined,
 };
 
@@ -21,11 +22,12 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         userLoggedIn: (state, action) => {
-            state.accessToken = action.payload.accessToken;
+            console.log(action)
+            state.device_token = action.payload.device_token;
             state.user = action.payload.user;
         },
         userLoggedOut: (state) => {
-            state.accessToken = undefined;
+            state.device_token = undefined;
             state.user = undefined;
         },
     },

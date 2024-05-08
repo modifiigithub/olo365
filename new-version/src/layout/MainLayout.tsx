@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import { FaPlus } from "react-icons/fa6";
 import { TiMinus } from "react-icons/ti";
@@ -56,7 +56,7 @@ export default function MainLayout() {
                             <CartItem />
                             <CartItem />
                         </div>
-
+                        <Link to="/carts" className="btn btn-sm mt-3">Goto Carts</Link>
                     </ul>
                 </div>
             </div>

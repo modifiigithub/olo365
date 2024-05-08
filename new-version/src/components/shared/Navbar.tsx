@@ -1,10 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import logo from "../../assets/svgs/logo.svg"
 import { ReactNode } from "react"
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
+import { userLoggedOut } from "../../redux/features/auth/authSlice"
+import { RootState } from "../../redux/app/store"
 
 export default function Navbar({ drawerButton }: {
     drawerButton: ReactNode
 }) {
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const { device_token, user } = useAppSelector((state: RootState) => state?.auth);
+
+    function handleLogout() {
+        dispatch(userLoggedOut())
+        localStorage.clear()
+        navigate("/login")
+    }
+
+    console.log(user)
+
     return (
         <>
             <nav className="bg-stone-800/90 backdrop-blur-xl sticky top-0 z-20">
@@ -52,7 +67,7 @@ export default function Navbar({ drawerButton }: {
                                     </div>
                                 </div>
                             </div>
-                            <div className="dropdown dropdown-end">
+                            {device_token ? <div className="dropdown dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
                                         <img alt="user profile" src="https://plus.unsplash.com/premium_photo-1666265087928-fe19db9887ad" />
@@ -66,9 +81,9 @@ export default function Navbar({ drawerButton }: {
                                         </a>
                                     </li>
                                     <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                    <li><button onClick={handleLogout}>Logout</button></li>
                                 </ul>
-                            </div>
+                            </div> : <Link to="/login" className="btn btn-sm bg-brand-600 hover:bg-brand-700 text-white border-brand-400">Login</Link>}
                         </div>
                     </div>
                 </div>
