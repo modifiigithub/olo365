@@ -10,14 +10,14 @@ export default function Home() {
             <FilterAction />
             <div className="container">
                 <div className="grid grid-cols-12 gap-6">
-                    <div className="col-span-3 relative h-full">
-                        <div className="mt-3 sticky top-48">
+                    <div className="col-span-12 md:col-span-3 relative h-full">
+                        <div className="mt-3 sticky top-28">
                             {foods.map(food => <p key={food.id} className="my-3 cursor-pointer text-xl font-bold hover:underline text-stone-700">
                                 {food.category}
                             </p>)}
                         </div>
                     </div>
-                    <div className="col-span-9">
+                    <div className="col-span-12 md:col-span-9">
                         {foods.map(menu => <div key={menu.id}>
                             <h3 className="mt-4 mb-4 text-3xl font-bold">{menu.category}</h3>
                             <div className="grid grid-cols-12 gap-6 mb-6">

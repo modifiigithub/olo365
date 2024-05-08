@@ -13,7 +13,7 @@ interface FoodItem {
 
 export default function FoodCard({ food }: { food: FoodItem }) {
     return (
-        <div className="col-span-12 md:col-span-4 card card-compact bg-base-100 p-2 shadow-md border border-stone-200 overflow-hidden">
+        <div className="col-span-12 md:col-span-6 lg:col-span-4 card card-compact bg-base-100 p-2 shadow-md border border-stone-200 overflow-hidden">
             <div className="h-52 w-full overflow-hidden rounded-lg">
                 <img className="w-full h-full object-cover transition rounded-lg hover:scale-110" src={food.cover} alt={food.title} />
             </div>

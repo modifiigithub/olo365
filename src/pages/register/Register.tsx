@@ -61,7 +61,7 @@ export default function Register() {
     }
 
     return (
-        <div className="h-screen flex justify-center items-center">
+        <div className="container min-h-screen flex justify-center items-center py-10 md:py-0">
             <form onSubmit={handleSubmit(onSubmit)} className="w-[30rem] mx-auto">
                 <div>
                     <img className="mb-10 mx-auto w-56" src={logo} alt="logo" />

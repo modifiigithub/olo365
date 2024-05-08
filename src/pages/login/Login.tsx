@@ -60,7 +60,7 @@ export default function Login() {
     }
 
     return (
-        <div className="h-screen flex justify-center items-center">
+        <div className="container h-screen flex justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-[30rem] mx-auto">
                 <div>
                     <img className="mb-10 mx-auto w-56" src={logo} alt="logo" />

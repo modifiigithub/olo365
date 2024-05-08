@@ -3,7 +3,7 @@ import { HiMiniBarsArrowDown } from "react-icons/hi2";
 
 export default function FilterAction() {
     return (
-        <div className="py-5 border-b border-slate-200 sticky top-[4.5rem] z-10 bg-white/90 backdrop-blur-lg">
+        <div className="py-5 border-b border-slate-200 bg-white/90 backdrop-blur-lg">
             <div className="container flex justify-between items-center ">
                 <h3 className="text-2xl font-bold">Category</h3>
                 <div className="flex gap-3">
