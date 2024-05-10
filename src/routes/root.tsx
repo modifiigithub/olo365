@@ -8,6 +8,7 @@ import Register from "../pages/register/Register";
 import ErrorPage from "../pages/error-page/ErrorPage";
 import Carts from "../pages/carts/Carts";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import Profile from "../pages/profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,12 @@ const router = createBrowserRouter([
                 path: "/carts",
                 element: <PrivateRoute>
                     <Carts />
+                </PrivateRoute>
+            },
+            {
+                path: "/profile",
+                element: <PrivateRoute>
+                    <Profile />
                 </PrivateRoute>
             },
         ]
