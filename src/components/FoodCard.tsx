@@ -1,3 +1,5 @@
+import { FaCartPlus } from "react-icons/fa6";
+
 interface FoodItem {
     title: string;
     description: string;
@@ -19,10 +21,13 @@ export default function FoodCard({ food }: { food: FoodItem }) {
             </div>
             <div className="card-body">
                 <h2 className="card-title font-bold text-xl">{food.title}</h2>
+                <p className="line-clamp-2 text-stone-600 text-base mb-2">{food.description}</p>
                 <div className="flex">
-                    <p className="text-lg font-semibold">$12.99</p>
+                    <p className="text-lg font-bold">$12.99</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-sm px-6 py-1 text-white rounded-full bg-brand-600 hover:bg-brand-500">Add</button>
+                        <button className="btn btn-sm px-6 py-1 text-white rounded-full bg-brand-600 hover:bg-brand-500">
+                            <FaCartPlus />
+                            Add To Cart</button>
                     </div>
                 </div>
             </div>

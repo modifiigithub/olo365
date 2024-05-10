@@ -5,7 +5,7 @@ export default function FilterAction() {
     return (
         <div className="py-5 border-b border-slate-200 bg-white/90 backdrop-blur-lg">
             <div className="container flex justify-between items-center ">
-                <h3 className="text-2xl font-bold">Category</h3>
+                <h3 className="text-3xl font-bold">Category</h3>
                 <div className="flex gap-3">
                     <button className="btn bg-brand-600 hover:bg-brand-500 text-base-100 btn-sm">
                         All

@@ -8,7 +8,10 @@ import Register from "../pages/register/Register";
 import ErrorPage from "../pages/error-page/ErrorPage";
 import Carts from "../pages/carts/Carts";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
-import Profile from "../pages/profile/Profile";
+import Info from "../pages/profile-info/profile-info";
+import ProfileLayout from "../layout/ProfileLayout";
+import ResetPassword from "../pages/reset-password/ResetPassword";
+import OrderHistory from "../pages/order-history/OrderHistory";
 
 const router = createBrowserRouter([
     {
@@ -27,10 +30,24 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: "/profile",
+                path: "/profile-info",
                 element: <PrivateRoute>
-                    <Profile />
-                </PrivateRoute>
+                    <ProfileLayout />
+                </PrivateRoute>,
+                children: [
+                    {
+                        path: "",
+                        element: <Info />
+                    },
+                    {
+                        path: "reset-password",
+                        element: <ResetPassword />
+                    },
+                    {
+                        path: "order-history",
+                        element: <OrderHistory />
+                    },
+                ]
             },
         ]
     },
