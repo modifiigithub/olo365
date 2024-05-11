@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: "/profile-info",
+                path: "/profile",
                 element: <PrivateRoute>
                     <ProfileLayout />
                 </PrivateRoute>,
