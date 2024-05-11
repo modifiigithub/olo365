@@ -11,7 +11,7 @@ import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Info from "../pages/profile-info/profile-info";
 import ProfileLayout from "../layout/ProfileLayout";
 import ResetPassword from "../pages/reset-password/ResetPassword";
-import OrderHistory from "../pages/order-history/OrderHistory";
+import MyOrder from "../pages/my-history/MyOrder";
 
 const router = createBrowserRouter([
     {
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
                         element: <ResetPassword />
                     },
                     {
-                        path: "order-history",
-                        element: <OrderHistory />
+                        path: "my-order",
+                        element: <MyOrder />
                     },
                 ]
             },
