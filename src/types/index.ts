@@ -1,3 +1,5 @@
+export type ProductType = "" | "veg" | "non_veg" | "drinks";
+
 export interface IProduct {
     id: number;
     name: string;
@@ -22,7 +24,7 @@ export interface IProduct {
     branch_id: number;
     colors: null;
     popularity_count: number;
-    product_type: string;
+    product_type: ProductType;
     translations: unknown[];
 }
 

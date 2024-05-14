@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import productReducer from '../features/product/productSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -25,13 +26,14 @@ export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: persistedAuthReducer,
+    product: productReducer
   },
   middleware: (getDefaultMiddlewares) =>
-  getDefaultMiddlewares({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }).concat(apiSlice.middleware),
+    getDefaultMiddlewares({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(apiSlice.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
