@@ -1,13 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import FilterAction from "../../components/FilterAction";
 import Hero from "../../components/Hero";
-import { foods } from "../../data/foods";
 import { useGetCategoriesQuery } from "../../redux/features/category/categoryApi";
 import { useGetProductsQuery } from "../../redux/features/product/productsApi";
 import ProductCard from "../../components/ProductCard";
 import { ICategory, IProduct } from "../../types";
 import { ReactNode } from "react";
-import { JSX } from "react/jsx-runtime";
+import SkeletonProductCard from "../../components/SkeletonProductCard";
 
 export default function Home() {
     const { isLoading: isLoadingCategories, isSuccess: isSuccessCategories, data: categories } = useGetCategoriesQuery(undefined)
@@ -19,7 +18,20 @@ export default function Home() {
     let categoriesContent;
 
     if (isLoadingCategories) {
-        categoriesContent = <p>loading...</p>
+        categoriesContent = <>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+            <div className="skeleton h-6 w-full my-4"></div>
+        </>
     } else if (isSuccessCategories && categories?.data?.length > 0) {
         categoriesContent = categories?.data?.slice(0, 10)?.map((category: ICategory) =>
             <p key={category.id} className="my-3 cursor-pointer text-lg font-semibold hover:underline text-stone-700" >
@@ -35,7 +47,14 @@ export default function Home() {
     let productsContent: string | number | boolean | JSX.Element | Iterable<ReactNode> | null | undefined;
 
     if (isLoadingProducts) {
-        productsContent = <p>loading...</p>
+        productsContent = <>
+            <SkeletonProductCard className="col-span-4" />
+            <SkeletonProductCard className="col-span-4" />
+            <SkeletonProductCard className="col-span-4" />
+            <SkeletonProductCard className="col-span-4" />
+            <SkeletonProductCard className="col-span-4" />
+            <SkeletonProductCard className="col-span-4" />
+        </>
     } else if (isSuccessProducts && products.data.data.length > 0) {
         productsContent = products.data.data.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
     } else if (isSuccessProducts && products.data.data.length == 0) {
@@ -51,6 +70,7 @@ export default function Home() {
             </Helmet>
             <Hero />
             <FilterAction />
+
             <div className="container">
                 <div className="grid grid-cols-12 gap-6">
                     <div className="col-span-12 md:col-span-2 relative h-full">
@@ -62,12 +82,6 @@ export default function Home() {
                         <div className="grid grid-cols-12 gap-6 mb-6">
                             {productsContent}
                         </div>
-                        {/* {foods.map(menu => <div key={menu.id}>
-                            <h3 className="mt-4 mb-4 text-3xl font-bold">{menu.category}</h3>
-                            <div className="grid grid-cols-12 gap-6 mb-6">
-                                {productsContent}
-                            </div>
-                        </div>)} */}
                     </div>
                 </div>
             </div >
