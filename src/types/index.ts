@@ -43,3 +43,13 @@ export interface ICategory {
     restaurants: unknown[] | null;
     translations: unknown[];
 }
+
+
+export interface ICartItem {
+    id: string;
+    type: string;
+    name: string;
+    price: number;
+    description: string;
+    quantity: number;
+}

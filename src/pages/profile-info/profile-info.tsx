@@ -5,7 +5,7 @@ export default function ProfileInfo() {
   const { user } = useAppSelector((state: RootState) => state.auth)
 
   return (
-    <>
+    <div className="min-h-[80vh]">
       <h3 className="text-2xl font-bold">User Information</h3>
 
       <form className="mt-4">
@@ -32,6 +32,6 @@ export default function ProfileInfo() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   )
 }

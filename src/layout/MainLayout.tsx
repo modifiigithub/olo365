@@ -2,6 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import CartItem from "../components/CartItem";
 import Footer from "../components/shared/Footer";
+import { RootState } from "../redux/app/store";
+import { useAppSelector } from "../redux/app/hooks";
 
 function DrawerButton() {
     return (
@@ -10,6 +12,16 @@ function DrawerButton() {
 }
 
 export default function MainLayout() {
+    const { carts } = useAppSelector((state: RootState) => state.cart);
+
+    let content;
+
+    if (carts.length > 0) {
+        content = carts.map(cart => <CartItem image="lg" size="small" cart={cart} />)
+    } else {
+        content = <p>Cart is empty</p>
+    }
+
     return (
         <>
             <div className="drawer">
@@ -27,26 +39,7 @@ export default function MainLayout() {
                             <h3 className="text-xl font-bold">Cart Items</h3>
                         </div>
                         <div>
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
-                            <CartItem image="lg" size="small" />
+                            {content}
                         </div>
 
                         <div className="sticky bottom-0 text-center bg-base-200/90 backdrop-blur-lg py-3">

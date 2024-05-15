@@ -1,10 +1,13 @@
 import { FaPlus } from "react-icons/fa6";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TiMinus } from "react-icons/ti";
+import { ICartItem } from "../types";
+import { useAppDispatch } from "../redux/app/hooks";
 
 interface CartItemProps {
     image: "md" | "lg"
     size: "small" | "large"
+    cart: ICartItem
 }
 
 function RemoveButton() {
@@ -18,7 +21,11 @@ function RemoveButton() {
     )
 }
 
-export default function CartItem({ image = "md", size = "small" }: CartItemProps) {
+export default function CartItem({ image = "md", size = "small", cart }: CartItemProps) {
+    const dispatch = useAppDispatch();
+    const { quantity } = cart
+
+    
     return (
         <div className="grid grid-cols-12 gap-4 justify-start py-4 border-b border-stone-200">
             <div className={`${image == "md" ? "col-span-2" : "col-span-4"}`}>
@@ -35,7 +42,7 @@ export default function CartItem({ image = "md", size = "small" }: CartItemProps
                     <button className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">
                         <FaPlus />
                     </button>
-                    <input type="text" placeholder="" value={1} className="input input-sm input-bordered w-10 text-center font-semibold" />
+                    <input type="text" placeholder="" value={quantity} readOnly className="input input-sm input-bordered w-10 text-center font-semibold" />
                     <button className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">
                         <TiMinus />
                     </button>
