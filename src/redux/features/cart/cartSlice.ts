@@ -4,12 +4,25 @@ import { ICartItem } from '../../../types';
 interface CartState {
     carts: ICartItem[];
     totalPrice: number;
+    totalProduct: number;
 }
 
 const initialState: CartState = {
     carts: [],
-    totalPrice: 0
+    totalPrice: 0,
+    totalProduct: 0
 }
+
+const calculateTotals = (carts: ICartItem[]) => {
+    return carts.reduce(
+        (totals, item) => {
+            totals.totalPrice += item.price * item.quantity;
+            totals.totalProduct += item.quantity;
+            return totals;
+        },
+        { totalPrice: 0, totalProduct: 0 }
+    );
+};
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -25,11 +38,29 @@ export const cartSlice = createSlice({
                 state.carts.push(item);
             }
 
-            state.totalPrice = state.carts.reduce((total, item) => total + item.price * item.quantity, 0);
+            const { totalPrice, totalProduct } = calculateTotals(state.carts);
+            state.totalPrice = totalPrice;
+            state.totalProduct = totalProduct;
+        },
+        removeToCart: (state, action: PayloadAction<ICartItem>) => {
+            const itemToRemove = action.payload;
+            const indexToRemove = state.carts.findIndex(cartItem => cartItem.id === itemToRemove.id);
+
+            if (indexToRemove !== -1) {
+                state.carts[indexToRemove].quantity -= itemToRemove.quantity;
+                
+                if (state.carts[indexToRemove].quantity <= 0) {
+                    state.carts.splice(indexToRemove, 1);
+                }
+            }
+
+            const { totalPrice, totalProduct } = calculateTotals(state.carts);
+            state.totalPrice = totalPrice;
+            state.totalProduct = totalProduct;
         }
     },
-})
+});
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
