@@ -4,12 +4,12 @@ export const categoryApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: () => ({
-                url: "/products"
+                url: "/products/latest"
             }),
         }),
         getProductById: builder.query({
             query: (productId) => ({
-                url: `/products/${productId}`
+                url: `/server/products/${productId}`
             }),
         }),
     }),

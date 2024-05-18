@@ -29,6 +29,8 @@ export default function CartItem({ size = "small", cart }: CartItemProps) {
         skip: id ? false : true
     })
 
+    console.log(data)
+
     return (
         <div className="grid grid-cols-12 gap-4 justify-start py-4 border-b border-stone-200">
             {/* <div className={`${image == "md" ? "col-span-2" : "col-span-4"}`}>

@@ -6,7 +6,6 @@ export const categoryApi = apiSlice.injectEndpoints({
             query: () => ({
                 url: "/categories"
             }),
-
         }),
     }),
 });

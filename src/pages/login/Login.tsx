@@ -81,7 +81,7 @@ export default function Login() {
                     </label>
                 </div>
                 <button disabled={isLoading} type="submit" className="btn bg-brand-600 hover:bg-brand-500 w-full text-white mt-5">
-                    {isLoading ? <span className="loading loading-bars loading-xs"></span> : <>  Sign In</>}
+                    {isLoading ? <span className="loading loading-bars loading-xs"></span> : <>Sign In</>}
                 </button>
                 <div>
                     <p className="mt-4">Don't have an Account? Click here: <Link className="text-blue-500 font-medium" to="/register">Sign Up</Link></p>

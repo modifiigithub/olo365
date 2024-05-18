@@ -25,6 +25,10 @@ export default function Carts() {
                     <h3 className="text-2xl font-semibold">Order summary</h3>
                 </div>
             </div>
+
+            <div>
+                <button className="btn text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</button>
+            </div>
         </section>
     )
 }
