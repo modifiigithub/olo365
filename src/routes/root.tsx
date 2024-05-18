@@ -12,6 +12,7 @@ import Info from "../pages/profile-info/profile-info";
 import ProfileLayout from "../layout/ProfileLayout";
 import ResetPassword from "../pages/reset-password/ResetPassword";
 import MyOrder from "../pages/my-history/MyOrder";
+import PlaceOrder from "../pages/place-order/PlaceOrder";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Carts />
                 </PrivateRoute>
+            },
+            {
+                path: "place-order",
+                element: <PlaceOrder />
             },
             {
                 path: "/profile",

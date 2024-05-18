@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CartItem from "../../components/CartItem";
 import { useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
@@ -27,7 +28,7 @@ export default function Carts() {
             </div>
 
             <div>
-                <button className="btn text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</button>
+                <Link to="/place-order" className="btn text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</Link>
             </div>
         </section>
     )
