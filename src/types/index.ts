@@ -53,3 +53,17 @@ export interface ICartItem {
     description: string;
     quantity: number;
 }
+
+export interface Table {
+    id: number;
+    number: number;
+    capacity: number;
+    branch_id: number;
+    is_active: boolean;
+    status: number;
+    reservation_type: string;
+    position: number;
+    combined: boolean;
+    created_at: string;
+    updated_at: string;
+}
