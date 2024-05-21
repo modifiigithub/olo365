@@ -1,14 +1,15 @@
 import { ReactNode } from "react"
 import { useAppDispatch } from "../redux/app/hooks"
-import { removeToCart } from "../redux/features/cart/cartSlice"
+import { removeItemFromCart, removeToCart } from "../redux/features/cart/cartSlice"
 import { ICartItem, IProduct } from "../types"
 
 interface RemoveToCartButtonProps {
     product: IProduct,
-    children: ReactNode
+    children: ReactNode,
+    type?: "quantity" | "product"
 }
 
-export default function RemoveToCartButton({ product, children }: RemoveToCartButtonProps) {
+export default function RemoveToCartButton({ product, children, type = "quantity" }: RemoveToCartButtonProps) {
     const dispatch = useAppDispatch()
 
     function handleRemoveToCart(product: IProduct) {
@@ -19,7 +20,11 @@ export default function RemoveToCartButton({ product, children }: RemoveToCartBu
             description, name, price, quantity: 1, type: product_type
         }
 
-        dispatch(removeToCart(obj))
+        if (type === "quantity") {
+            dispatch(removeToCart(obj))
+        } else {
+            dispatch(removeItemFromCart(obj))
+        }
     }
 
     return (

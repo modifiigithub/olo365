@@ -1,20 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     createApi,
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-// import { RootState } from '../../app/store';
 import { userLoggedOut } from '../auth/authSlice';
+import { RootState } from '../../app/store';
+import { base_url } from '../../../config';
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: base_url.API_URL,
     // credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
-        // const token = (getState() as RootState).auth.device_token;
+        (getState() as RootState).auth.device_token;
+        const token = (getState() as RootState).auth.device_token;
 
-        // if (token) {
-        //     headers.set('authorization', `${token}`);
-        // }
+        if (token) {
+            // headers.set('authorization', `${token}`);
+        }
 
         return headers;
     },

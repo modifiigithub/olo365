@@ -12,24 +12,11 @@ interface CartItemProps {
     cart: ICartItem
 }
 
-function RemoveButton() {
-    return (
-        <div className="flex justify-start items-center gap-1 mt-2">
-            <p className="text-base text-red-500 font-medium">Remove</p>
-            <button className="p-2 hover:bg-brand-200 rounded-full">
-                <RiDeleteBin6Line className="text-lg cursor-pointer text-red-500" />
-            </button>
-        </div>
-    )
-}
-
 export default function CartItem({ size = "small", cart }: CartItemProps) {
     const { quantity, name, description, id, price } = cart
     const { isSuccess, data } = useGetProductByIdQuery(id, {
         skip: id ? false : true
     })
-
-    console.log(data)
 
     return (
         <div className="grid grid-cols-12 gap-4 justify-start py-4 border-b border-stone-200">
@@ -60,7 +47,16 @@ export default function CartItem({ size = "small", cart }: CartItemProps) {
                             </button>
                         </RemoveToCartButton>}
                     </div>
-                    <RemoveButton />
+
+                    <div className="flex justify-start items-center gap-1 mt-2">
+                        <p className="text-base text-red-500 font-medium">Remove</p>
+
+                        <RemoveToCartButton product={data?.data as IProduct} type="product">
+                            <button className="p-2 hover:bg-brand-200 rounded-full">
+                                <RiDeleteBin6Line className="text-lg cursor-pointer text-red-500" />
+                            </button>
+                        </RemoveToCartButton>
+                    </div>
                 </div>
             </div>
         </div>
