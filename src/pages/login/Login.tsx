@@ -65,7 +65,9 @@ export default function Login() {
         <div className="container h-screen flex justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-[30rem] mx-auto">
                 <div>
-                    <img className="mb-10 mx-auto w-56" src={logo} alt="logo" />
+                    <Link to="/">
+                        <img className="mb-10 mx-auto w-56" src={logo} alt="logo" />
+                    </Link>
                     <h2 className="mb-5 text-3xl font-bold">Login to your account</h2>
                 </div>
                 <div className="mb-4">
@@ -75,14 +77,17 @@ export default function Login() {
                         <input defaultValue="customer@yopmail.com" {...register("email", { required: true })} type="email" className="grow" placeholder="Enter email" />
                     </label>
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                     <p className="mb-2 font-medium">Password</p>
                     <label className="input input-bordered flex items-center gap-2">
                         <IoKeyOutline />
                         <input defaultValue="Test@123" {...register("password", { required: true })} type="password" className="grow" placeholder="Enter password" />
                     </label>
                 </div>
-                <button disabled={isLoading} type="submit" className="btn bg-brand-600 hover:bg-brand-500 w-full text-white mt-5">
+                <div className="text-right font-semibold">
+                    <Link to="/forgot-password" className="text-sm">Forgot password</Link>
+                </div>
+                <button disabled={isLoading} type="submit" className="btn bg-brand-600 hover:bg-brand-500 w-full text-white mt-3">
                     {isLoading ? <span className="loading loading-bars loading-xs"></span> : <>Sign In</>}
                 </button>
                 <div>

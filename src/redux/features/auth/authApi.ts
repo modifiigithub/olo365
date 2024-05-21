@@ -17,10 +17,15 @@ export const authApi = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data,
             }),
-
-
+        }),
+        updateProfileInfo: builder.mutation({
+            query: (data) => ({
+                url: `${base_url.AUTH_API_URL}/update-profile`,
+                method: "POST",
+                body: data,
+            }),
         }),
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useUpdateProfileInfoMutation } = authApi;

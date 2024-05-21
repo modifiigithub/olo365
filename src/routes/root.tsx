@@ -13,6 +13,7 @@ import ProfileLayout from "../layout/ProfileLayout";
 import ResetPassword from "../pages/reset-password/ResetPassword";
 import MyOrder from "../pages/my-history/MyOrder";
 import PlaceOrder from "../pages/place-order/PlaceOrder";
+import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />
+    },
+    {
+        path: "/forgot-password",
+        element: <ForgotPassword />
     }
 ]);
 
