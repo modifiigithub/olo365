@@ -67,3 +67,27 @@ export interface Table {
     created_at: string;
     updated_at: string;
 }
+
+export interface User {
+    address: string | null;
+    city: string | null;
+    country: string | null;
+    created_at: string;
+    deleted_at: string | null;
+    device_token: string;
+    device_type: string | null;
+    email: string;
+    email_verified_at: string | null;
+    id: number;
+    name: string;
+    notification_status: number;
+    phone: string;
+    phone_code: string;
+    profile_photo: string | null;
+    role_id: number;
+    state: string | null;
+    status: number;
+    updated_at: string;
+    verified: number;
+    zip_code: string | null;
+}

@@ -1,15 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface IUser {
-    id: number;
-    role_id: number;
-    name: string;
-    email: string;
-}
+import { User } from "../../../types";
 
 interface InitialState {
     device_token: undefined | string,
-    user: undefined | IUser,
+    user: undefined | User,
 }
 
 const initialState: InitialState = {

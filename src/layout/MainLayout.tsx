@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import CartItem from "../components/CartItem";
 import Footer from "../components/shared/Footer";
@@ -29,6 +29,7 @@ export default function MainLayout() {
                 <div className="drawer-content">
                     <Navbar drawerButton={<DrawerButton />} />
                     <Outlet />
+                    <ScrollRestoration />
                     <Footer />
                 </div>
                 <div className="drawer-side z-20">

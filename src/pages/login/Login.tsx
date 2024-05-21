@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "../../redux/app/hooks";
 import { userLoggedIn } from "../../redux/features/auth/authSlice";
+import { User } from "../../types";
 
 type Inputs = {
     email: string
@@ -28,12 +29,13 @@ export default function Login() {
             const message = data?.message ? data.message : "Login Successfully";
             toast.success(message)
 
-            const { id, role_id, name, email, device_token} = data.data
-    
+            const { id, role_id, name, email, device_token, address, phone, country, city, phone_code, zip_code } = data.data as User
+
             dispatch(userLoggedIn({
                 device_token,
                 user: {
-                    id, role_id, name, email
+                    id, role_id, name, email,
+                    address, phone, country, city, phone_code, zip_code
                 }
             }))
 

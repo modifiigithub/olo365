@@ -8,8 +8,9 @@ import { HiOutlineDocumentMagnifyingGlass } from "react-icons/hi2"
 
 export default function ProfileSidebar() {
     const { user } = useAppSelector((state: RootState) => state.auth)
+
     return (
-        <div className="col-span-3 text-center">
+        <div className="col-span-12 md:col-span-3 text-center mb-8">
             <div className="bg-base-200 py-10 rounded-lg">
                 <img className="w-32 mx-auto border rounded-full" src={avatarImage} alt="avatar" />
                 {user?.name && <p className="text-xl font-bold mt-4">{user.name}</p>}
