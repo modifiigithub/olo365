@@ -31,15 +31,19 @@ export default function Login() {
 
             const { id, role_id, name, email, device_token, address, phone, country, city, phone_code, zip_code } = data.data as User
 
-            dispatch(userLoggedIn({
-                device_token,
-                user: {
-                    id, role_id, name, email,
-                    address, phone, country, city, phone_code, zip_code
-                }
-            }))
+            if (device_token) {
+                dispatch(userLoggedIn({
+                    device_token,
+                    user: {
+                        id, role_id, name, email,
+                        address, phone, country, city, phone_code, zip_code
+                    }
+                }))
 
-            navigate("/")
+                navigate("/")
+            } else {
+                navigate("/verify-account")
+            }
         }
     }, [isSuccess, data, navigate, dispatch])
 
@@ -62,7 +66,7 @@ export default function Login() {
     }
 
     return (
-        <div className="container h-screen flex justify-center items-center">
+        <section className="container h-screen flex justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-[30rem] mx-auto">
                 <div>
                     <Link to="/">
@@ -74,7 +78,7 @@ export default function Login() {
                     <p className="mb-2 font-medium">Email</p>
                     <label className="input input-bordered flex items-center gap-2">
                         <MdOutlineMail />
-                        <input defaultValue="customer@yopmail.com" {...register("email", { required: true })} type="email" className="grow" placeholder="Enter email" />
+                        <input defaultValue="nabil.seu.cse@gmail.com" {...register("email", { required: true })} type="email" className="grow" placeholder="Enter email" />
                     </label>
                 </div>
                 <div className="mb-2">
@@ -94,6 +98,6 @@ export default function Login() {
                     <p className="mt-4">Don't have an Account? Click here: <Link className="text-blue-500 font-medium" to="/register">Sign Up</Link></p>
                 </div>
             </form>
-        </div>
+        </section>
     )
 }

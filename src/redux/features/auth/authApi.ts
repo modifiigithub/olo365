@@ -22,10 +22,18 @@ export const authApi = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: `${base_url.AUTH_API_URL}/update-profile`,
                 method: "POST",
-                body: data,
-            }),
+                body: data.body,
+                headers: data.headers,
+            })
         }),
+        verifyOtp: builder.mutation({
+            query: (data) => ({
+                url: `${base_url.AUTH_API_URL}/verify-otp`,
+                method: "POST",
+                body: data
+            })
+        })
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useUpdateProfileInfoMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useUpdateProfileInfoMutation, useVerifyOtpMutation } = authApi;

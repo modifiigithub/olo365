@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
-// import { useUpdateProfileInfoMutation } from "../../redux/features/auth/authApi";
+import { useUpdateProfileInfoMutation } from "../../redux/features/auth/authApi";
 import { useForm, SubmitHandler } from "react-hook-form"
+import toast from "react-hot-toast";
 
 type Inputs = {
   name: string;
@@ -15,17 +17,27 @@ type Inputs = {
 
 export default function ProfileInfo() {
   const { user } = useAppSelector((state: RootState) => state.auth)
-  // const [updateProfileInfo, isSuccess] = useUpdateProfileInfoMutation()
+  const { device_token } = useAppSelector((state: RootState) => state.auth)
+  const [updateProfileInfo, { isSuccess: isSuccessUpdateProfile }] = useUpdateProfileInfoMutation()
 
   const {
     register,
     handleSubmit,
   } = useForm<Inputs>()
 
+  useEffect(() => {
+    if (isSuccessUpdateProfile) {
+      toast.success("User data update successful.")
+    }
+  }, [isSuccessUpdateProfile])
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    
-
+    updateProfileInfo({
+      body: data,
+      headers: {
+        'authorization': device_token
+      }
+    })
     console.log(data)
   }
 
@@ -49,7 +61,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Name</span>
               </div>
-              <input type="text"  {...register("name")} defaultValue={user?.name} className="input input-bordered w-full" />
+              <input type="text" {...register("name")} defaultValue={user?.name} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -92,9 +104,9 @@ export default function ProfileInfo() {
           <div className="col-span-12 lg:col-span-3">
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text">Phone Code</span>
+                <span className="label-text">Phone</span>
               </div>
-              <input type="text" defaultValue={user?.phone_code || ''} className="input input-bordered w-full" />
+              <input type="text" defaultValue={user?.phone || ''} className="input input-bordered w-full" />
             </label>
           </div>
 

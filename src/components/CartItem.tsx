@@ -31,7 +31,7 @@ export default function CartItem({ size = "small", cart }: CartItemProps) {
                             {description}
                         </p>
                     </div>
-                    <p className="text-lg font-bold mt-2">${quantity * price}</p>
+                    <p className="text-lg font-bold mt-2">${(quantity * price).toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between">
                     <div className="flex mt-2">

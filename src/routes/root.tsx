@@ -14,6 +14,7 @@ import ResetPassword from "../pages/reset-password/ResetPassword";
 import MyOrder from "../pages/my-history/MyOrder";
 import PlaceOrder from "../pages/place-order/PlaceOrder";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
+import VerifyAccount from "../pages/verify-account/VerifyAccount";
 
 const router = createBrowserRouter([
     {
@@ -68,7 +69,11 @@ const router = createBrowserRouter([
     {
         path: "/forgot-password",
         element: <ForgotPassword />
-    }
+    },
+    {
+        path: "/verify-account",
+        element: <VerifyAccount />
+    },
 ]);
 
 export default router;

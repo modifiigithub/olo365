@@ -109,9 +109,19 @@ export default function Register() {
                     <div className="mb-2">
                         <p className="mb-2 font-medium">Phone</p>
                         <select {...register("phone_code", { required: true })} className="select select-bordered rounded-none rounded-tl-lg rounded-bl-lg">
-                            <option>340</option>
-                            <option>670</option>
-                            <option>684</option>
+                            <option value="+1">+1 United States</option>
+                            <option value="+44">+44 United Kingdom</option>
+                            <option value="+91">+91 India</option>
+                            <option value="+61">+61 Australia</option>
+                            <option value="+81">+81 Japan</option>
+                            <option value="+49">+49 Germany</option>
+                            <option value="+33">+33 France</option>
+                            <option value="+86">+86 China</option>
+                            <option value="+7">+7 Russia</option>
+                            <option value="+34">+34 Spain</option>
+                            <option value="+39">+39 Italy</option>
+                            <option value="+55">+55 Brazil</option>
+                            <option value="+27">+27 South Africa</option>
                         </select>
 
                     </div>
