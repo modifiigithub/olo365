@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/svgs/logo-dark.svg";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useVerifyOtpMutation } from "../../redux/features/auth/authApi";
+import toast from "react-hot-toast";
 
 export default function VerifyAccount() {
+    const [verifyOtp, { isSuccess: isSuccessVerifyOtp, isError }] = useVerifyOtpMutation();
     const [otpValue, setOtpValue] = useState<{ [key: string]: string }>({
         1: "",
         2: "",
@@ -11,6 +14,31 @@ export default function VerifyAccount() {
     });
 
     const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+    const [email, setEmail] = useState("nabil.seu.cse@gmail.com");
+
+    useEffect(() => {
+        if (isSuccessVerifyOtp) {
+            toast.success("Account verify successful");
+        }
+    }, [isSuccessVerifyOtp]);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error("OTP is not valid.");
+        }
+    }, [isError]);
+
+    useEffect(() => {
+        if (otpValue[4]) {
+            // send request to server
+            const obj = {
+                email,
+                otp: Object.values(otpValue).join(""),
+                verified_for: 1
+            };
+            verifyOtp(obj);
+        }
+    }, [otpValue, email, verifyOtp]);
 
     function handleInput(event: React.ChangeEvent<HTMLInputElement>, position: number) {
         const value = event.target.value;
@@ -25,8 +53,6 @@ export default function VerifyAccount() {
         }
     }
 
-    
-
     return (
         <section className="container h-screen flex justify-center items-center">
             <form className="w-96 mx-auto">
@@ -39,7 +65,7 @@ export default function VerifyAccount() {
                 <div className="mb-4">
                     <p className="mb-2 font-medium">Email</p>
                     <label className="input input-bordered flex items-center gap-2">
-                        <input readOnly defaultValue="nabil.seu.cse@gmail.com" type="email" className="grow" placeholder="Enter email" />
+                        <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="grow" placeholder="Enter email" />
                     </label>
                 </div>
                 <p className="mb-2 font-medium">OTP</p>
@@ -61,9 +87,9 @@ export default function VerifyAccount() {
                     ))}
                 </div>
 
-                <button type="submit" className="btn bg-brand-600 hover:bg-brand-500 w-full text-white mt-3">
+                {/* <button type="submit" className="btn bg-brand-600 hover:bg-brand-500 w-full text-white mt-3">
                     Submit
-                </button>
+                </button> */}
             </form>
         </section>
     );

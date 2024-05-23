@@ -19,6 +19,13 @@ export default function ProfileInfo() {
   const { user } = useAppSelector((state: RootState) => state.auth)
   const { device_token } = useAppSelector((state: RootState) => state.auth)
   const [updateProfileInfo, { isSuccess: isSuccessUpdateProfile }] = useUpdateProfileInfoMutation()
+  // const { isSuccess: isSuccessFetchProfile, data: profile } = useGetProfileInfoQuery({
+  //   headers: {
+  //     "authorization": device_token
+  //   }
+  // }, {
+  //   skip: device_token ? false : true
+  // })
 
   const {
     register,
@@ -38,9 +45,7 @@ export default function ProfileInfo() {
         'authorization': device_token
       }
     })
-    console.log(data)
   }
-
 
   return (
     <div className="min-h-[80vh]">

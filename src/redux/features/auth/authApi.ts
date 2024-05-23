@@ -3,13 +3,21 @@ import { apiSlice } from "../api/apiSlice";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
+        getProfileInfo: builder.query({
+            query: (data) => {
+                console.log(data)
+                return {
+                    url: `${base_url.AUTH_API_URL}/get-profile`,
+                    headers: data.headers,
+                }
+            }
+        }),
         register: builder.mutation({
             query: (data) => ({
                 url: `${base_url.AUTH_API_URL}/register`,
                 method: "POST",
                 body: data,
             }),
-
         }),
         login: builder.mutation({
             query: (data) => ({
@@ -36,4 +44,10 @@ export const authApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useUpdateProfileInfoMutation, useVerifyOtpMutation } = authApi;
+export const {
+    useGetProfileInfoQuery,
+    useLoginMutation,
+    useRegisterMutation,
+    useUpdateProfileInfoMutation,
+    useVerifyOtpMutation
+} = authApi;
