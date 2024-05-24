@@ -1,68 +1,71 @@
-import { ReactNode } from "react"
-import { useAppSelector } from "../redux/app/hooks"
-import { RootState } from "../redux/app/store"
-import { useGetProductsQuery } from "../redux/features/product/productsApi"
-import { ICategory, IProduct } from "../types"
-import ProductCard from "./ProductCard"
-import SkeletonProductCard from "./SkeletonProductCard"
+import { ReactNode } from "react";
+import { useAppSelector } from "../redux/app/hooks";
+import { RootState } from "../redux/app/store";
+import { useGetProductsQuery } from "../redux/features/product/productsApi";
+import { ICategory, IProduct } from "../types";
+import ProductCard from "./ProductCard";
+import SkeletonProductCard from "./SkeletonProductCard";
 
 interface CategoryProductsProps {
-    category: ICategory
+    category: ICategory;
 }
 
 export default function CategoryProducts({ category }: CategoryProductsProps) {
-    const { productType, productSort } = useAppSelector((state: RootState) => state.product)
-    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery({
-        category_ids: category.id
-    })
+    const { productType, productSort, searchKeyword } = useAppSelector((state: RootState) => state.product);
+    const { isLoading, isSuccess, data } = useGetProductsQuery({ category_ids: category.id });
 
-    let content: string | number | boolean | JSX.Element | Iterable<ReactNode> | null | undefined;
+    let content: ReactNode;
 
-    if (isLoadingProducts) {
-        content = <>
-            <SkeletonProductCard className="col-span-4" />
-            <SkeletonProductCard className="col-span-4" />
-            <SkeletonProductCard className="col-span-4" />
-            <SkeletonProductCard className="col-span-4" />
-            <SkeletonProductCard className="col-span-4" />
-            <SkeletonProductCard className="col-span-4" />
-        </>
-    } else if (isSuccessProducts && products?.products?.length > 0) {
+    if (isLoading) {
+        content = (
+            <>
+                {[...Array(6)].map((_, index) => (
+                    <SkeletonProductCard key={index} className="col-span-4" />
+                ))}
+            </>
+        );
+    } else if (isSuccess && data && data.products.length > 0) {
         /**
          * filter by product type
-        */
-        const filterProductsResult = products?.products?.filter((product: IProduct) => product.product_type.includes(productType))
-
-        /**
-         * sort by price
          */
-        if (filterProductsResult && filterProductsResult?.length > 0) {
-            const sortedProducts = filterProductsResult.sort((a: IProduct, b: IProduct) => {
-                if (productSort === "asc") {
-                    return Math.ceil(a.price) - Math.ceil(b.price);
-                } else {
-                    return Math.ceil(b.price) - Math.ceil(a.price);
-                }
+        let filteredProducts = data.products.filter((product: IProduct) => product.product_type.includes(productType));
+
+        if (filteredProducts.length > 0) {
+            /**
+             * sort by price
+             */
+            filteredProducts = filteredProducts.sort((a: IProduct, b: IProduct) => {
+                const priceA = Math.ceil(a.price);
+                const priceB = Math.ceil(b.price);
+                return productSort === "asc" ? priceA - priceB : priceB - priceA;
             });
+            /**
+             * search product
+             */
+            const searchProductsContent = filteredProducts.filter((product: IProduct) =>
+                product.name.includes(searchKeyword)
+            );
 
-            content = sortedProducts.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
+            if (searchProductsContent.length > 0) {
+                content = searchProductsContent.map((product: IProduct) => (
+                    <ProductCard key={product.id} product={product} />
+                ));
+            } else {
+                content = <p className="col-span-12">No products found.</p>;
+            }
         } else {
-            content = <p className="col-span-12">No products found.</p>
+            content = <p className="col-span-12">No products found.</p>;
         }
-
-    } else if (isSuccessProducts && products?.data?.data?.length == 0) {
-        content = <p className="col-span-12">No products found.</p>
+    } else if (isSuccess && data && data.products.length === 0) {
+        content = <p className="col-span-12">No products found.</p>;
     } else {
-        content = <p className="col-span-12">Something was wrong.</p>
+        content = <p className="col-span-12">Something went wrong.</p>;
     }
 
     return (
-        <div className="my-6">
+        <article className="my-6">
             <h2 className="text-xl mb-4 mt-8 font-bold bg-brand-100 p-3 rounded-lg">{category.name}</h2>
-
-            <div className="grid grid-cols-12 gap-6">
-                {content}
-            </div>
-        </div>
-    )
+            <div className="grid grid-cols-12 gap-6">{content}</div>
+        </article>
+    );
 }

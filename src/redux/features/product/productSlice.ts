@@ -4,11 +4,13 @@ import { ProductType } from '../../../types';
 interface ProductState {
     productType: ProductType;
     productSort: "asc" | "desc";
+    searchKeyword: string;
 }
 
 const initialState: ProductState = {
     productType: "",
-    productSort: "asc"
+    productSort: "asc",
+    searchKeyword: ""
 }
 
 export const productSlice = createSlice({
@@ -20,10 +22,13 @@ export const productSlice = createSlice({
         },
         sortProductsByPrice: (state, action: PayloadAction<"asc" | "desc">) => {
             state.productSort = action.payload
+        },
+        searchProducts: (state, action: PayloadAction<string>) => {
+            state.searchKeyword = action.payload
         }
     },
 })
 
-export const { filterProducts, sortProductsByPrice } = productSlice.actions
+export const { filterProducts, sortProductsByPrice, searchProducts } = productSlice.actions
 
 export default productSlice.reducer

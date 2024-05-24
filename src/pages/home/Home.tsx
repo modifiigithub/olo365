@@ -57,7 +57,8 @@ export default function Home() {
                     <Suspense fallback={<Loader />}>
                         <div className="col-span-12 md:col-span-10">
                             {
-                                isSuccessCategories && categories?.length > 0 && categories.map((category: ICategory) => <CategoryProducts category={category} />)
+                                isSuccessCategories && categories?.length > 0 && categories.map((category: ICategory) =>
+                                    <CategoryProducts category={category} />)
                             }
                         </div>
                     </Suspense>

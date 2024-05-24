@@ -10,10 +10,8 @@ export const categoryApi = apiSlice.injectEndpoints({
                     url += `?category_ids=${query?.category_ids}`
                 }
 
-                return {
-                    url
-                }
-            },
+                return { url }
+            }
         }),
         getProductById: builder.query({
             query: (productId) => ({

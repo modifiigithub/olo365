@@ -91,3 +91,10 @@ export interface User {
     verified: number;
     zip_code: string | null;
 }
+
+export interface ProductApiResponse {
+    total_size: number;
+    limit: number;
+    offset: number;
+    products: IProduct[];
+}
