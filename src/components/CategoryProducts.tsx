@@ -1,3 +1,6 @@
+import { ReactNode } from "react"
+import { useAppSelector } from "../redux/app/hooks"
+import { RootState } from "../redux/app/store"
 import { useGetProductsQuery } from "../redux/features/product/productsApi"
 import { ICategory, IProduct } from "../types"
 import ProductCard from "./ProductCard"
@@ -8,13 +11,14 @@ interface CategoryProductsProps {
 }
 
 export default function CategoryProducts({ category }: CategoryProductsProps) {
-    const { data, isSuccess, isLoading } = useGetProductsQuery({
+    const { productType, productSort } = useAppSelector((state: RootState) => state.product)
+    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery({
         category_ids: category.id
     })
 
-    let content;
+    let content: string | number | boolean | JSX.Element | Iterable<ReactNode> | null | undefined;
 
-    if (isLoading) {
+    if (isLoadingProducts) {
         content = <>
             <SkeletonProductCard className="col-span-4" />
             <SkeletonProductCard className="col-span-4" />
@@ -23,12 +27,33 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
             <SkeletonProductCard className="col-span-4" />
             <SkeletonProductCard className="col-span-4" />
         </>
-    } else if (isSuccess && data?.products.length > 0) {
-        content = data?.products.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
-    } else if (isSuccess && data?.products.length == 0) {
-        content = <h4>No product found.</h4>
+    } else if (isSuccessProducts && products?.products?.length > 0) {
+        /**
+         * filter by product type
+        */
+        const filterProductsResult = products?.products?.filter((product: IProduct) => product.product_type.includes(productType))
+
+        /**
+         * sort by price
+         */
+        if (filterProductsResult && filterProductsResult?.length > 0) {
+            const sortedProducts = filterProductsResult.sort((a: IProduct, b: IProduct) => {
+                if (productSort === "asc") {
+                    return Math.ceil(a.price) - Math.ceil(b.price);
+                } else {
+                    return Math.ceil(b.price) - Math.ceil(a.price);
+                }
+            });
+
+            content = sortedProducts.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
+        } else {
+            content = <p className="col-span-12">No products found.</p>
+        }
+
+    } else if (isSuccessProducts && products?.data?.data?.length == 0) {
+        content = <p className="col-span-12">No products found.</p>
     } else {
-        content = <h4>Something was wrong.</h4>
+        content = <p className="col-span-12">Something was wrong.</p>
     }
 
     return (
