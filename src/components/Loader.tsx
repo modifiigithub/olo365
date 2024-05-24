@@ -2,6 +2,8 @@
 
 export default function Loader() {
     return (
-        <div>loading...</div>
+        <div>
+            <span className="loading loading-bars loading-md"></span>
+        </div>
     )
 }

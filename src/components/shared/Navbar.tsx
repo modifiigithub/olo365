@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import logo from "../../assets/svgs/logo.svg"
+import logo from "../../assets/images/logo-light.png"
 import { ReactNode } from "react"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
 import { userLoggedOut } from "../../redux/features/auth/authSlice"
@@ -20,7 +20,7 @@ export default function Navbar({ drawerButton }: {
     }
 
     return (
-        <nav className="bg-stone-800/90 backdrop-blur-xl sticky top-0 z-20">
+        <nav className="bg-black/90 backdrop-blur-xl sticky top-0 z-20">
             <div className="container">
                 <div className="navbar py-3">
                     <div className="navbar-start">
@@ -41,7 +41,7 @@ export default function Navbar({ drawerButton }: {
                         </ul>
                     </div> */}
                         <Link to="/">
-                            <img src={logo} alt="logo" />
+                            <img className="w-48" src={logo} alt="logo" />
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
