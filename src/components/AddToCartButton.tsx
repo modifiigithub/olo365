@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import { useAppDispatch } from "../redux/app/hooks"
 import { addToCart } from "../redux/features/cart/cartSlice"
 import { ICartItem, IProduct } from "../types"
+import toast from "react-hot-toast"
 
 interface AddToCartButtonProps {
     product: IProduct,
@@ -20,6 +21,7 @@ export default function AddToCartButton({ product, children }: AddToCartButtonPr
         }
 
         dispatch(addToCart(obj))
+        toast.success("Product add to cart success.")
     }
 
     return (

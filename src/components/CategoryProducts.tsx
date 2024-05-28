@@ -43,7 +43,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
              * search product
              */
             const searchProductsContent = filteredProducts.filter((product: IProduct) =>
-                product.name.includes(searchKeyword)
+                product?.name?.toLowerCase()?.includes(searchKeyword?.toLowerCase())
             );
 
             if (searchProductsContent.length > 0) {
@@ -51,21 +51,23 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                     <ProductCard key={product.id} product={product} />
                 ));
             } else {
-                content = <p className="col-span-12">No products found.</p>;
+                content = "";
             }
         } else {
-            content = <p className="col-span-12">No products found.</p>;
+            content = "";
         }
-    } else if (isSuccess && data && data.products.length === 0) {
-        content = <p className="col-span-12">No products found.</p>;
+    } else if (isSuccess && data && data.products?.length === 0) {
+        return <p className="col-span-12 mt-4">No products found.</p>;
     } else {
         content = <p className="col-span-12">Something went wrong.</p>;
     }
 
     return (
-        <article className="my-6">
-            <h2 className="text-xl mb-4 mt-8 font-bold bg-brand-100 p-3 rounded-lg">{category.name}</h2>
-            <div className="grid grid-cols-12 gap-6">{content}</div>
-        </article>
+        <>
+            {content != "" && <article className="my-6">
+                <h2 className="text-xl mb-4 mt-8 font-bold bg-brand-100 p-3 rounded-lg">{category.name}</h2>
+                <div className="grid grid-cols-12 gap-6">{content}</div>
+            </article>}
+        </>
     );
 }

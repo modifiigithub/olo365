@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import { useAppDispatch } from "../redux/app/hooks"
 import { removeItemFromCart, removeToCart } from "../redux/features/cart/cartSlice"
 import { ICartItem, IProduct } from "../types"
+import toast from "react-hot-toast"
 
 interface RemoveToCartButtonProps {
     product: IProduct,
@@ -25,6 +26,8 @@ export default function RemoveToCartButton({ product, children, type = "quantity
         } else {
             dispatch(removeItemFromCart(obj))
         }
+        
+        toast.success("Product remove to cart success.")
     }
 
     return (

@@ -3,6 +3,9 @@ import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
 import { filterProducts, searchProducts, sortProductsByPrice } from "../redux/features/product/productSlice";
 import { RootState } from "../redux/app/store";
 import { IoIosSearch } from "react-icons/io";
+import { IoFastFoodOutline } from "react-icons/io5";
+import { RiDrinks2Line } from "react-icons/ri";
+import { TiLeaf } from "react-icons/ti";
 
 function ActionButtonGroup({ className }: {
     className?: string
@@ -26,13 +29,13 @@ function ActionButtonGroup({ className }: {
                 </button>
             </>
             <button onClick={() => dispatch(filterProducts("non_veg"))} className={`btn hover:bg-brand-500 btn-sm ${productType === "non_veg" ? "bg-brand-600 text-base-100" : "hover:bg-brand-600 hover:text-base-100"}`}>
-                Non Veg
+                Non Veg <IoFastFoodOutline className="text-lg" />
             </button>
             <button onClick={() => dispatch(filterProducts("veg"))} className={`btn hover:bg-brand-500 btn-sm ${productType === "veg" ? "bg-brand-600 text-base-100" : "hover:bg-brand-600 hover:text-base-100"}`}>
-                Veg
+                Veg <TiLeaf className="text-lg" />
             </button>
             <button onClick={() => dispatch(filterProducts("drinks"))} className={`btn hover:bg-brand-500 btn-sm ${productType === "drinks" ? "bg-brand-600 text-base-100" : "hover:bg-brand-600 hover:text-base-100"}`}>
-                Drinks
+                Drinks <RiDrinks2Line className="text-lg" />
             </button>
             <button onClick={sortProduct} className="btn hover:bg-brand-600 hover:text-base-100 btn-sm">
                 Price
