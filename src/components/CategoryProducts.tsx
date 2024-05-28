@@ -54,7 +54,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                 content = "";
             }
         } else {
-            content = "";
+            content = <p className="col-span-12 mt-4">No products found.</p>;
         }
     } else if (isSuccess && data && data.products?.length === 0) {
         return <p className="col-span-12 mt-4">No products found.</p>;
