@@ -14,6 +14,8 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
     const { productType, productSort, searchKeyword } = useAppSelector((state: RootState) => state.product);
     const { isLoading, isSuccess, data } = useGetProductsQuery({ category_ids: category.id });
 
+    console.log(data)
+
     let content: ReactNode;
 
     if (isLoading) {
@@ -54,10 +56,10 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                 content = "";
             }
         } else {
-            content = <p className="col-span-12 mt-4">No products found.</p>;
+            content = "";
         }
-    } else if (isSuccess && data && data.products?.length === 0) {
-        return <p className="col-span-12 mt-4">No products found.</p>;
+    } else if (isSuccess && data && data?.products?.length === 0) {
+        return <p className="col-span-12 mt-4">No product found.</p>;
     } else {
         content = <p className="col-span-12">Something went wrong.</p>;
     }

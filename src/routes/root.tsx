@@ -7,7 +7,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import ErrorPage from "../pages/error-page/ErrorPage";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
-import Info from "../pages/profile-info/profile-info";
+import Info from "../pages/profile-info/ProfileInfo";
 import ProfileLayout from "../layout/ProfileLayout";
 import ResetPassword from "../pages/reset-password/ResetPassword";
 import MyOrder from "../pages/my-history/MyOrder";

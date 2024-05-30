@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
-import { useUpdateProfileInfoMutation } from "../../redux/features/auth/authApi";
+import { useGetProfileInfoQuery, useUpdateProfileInfoMutation } from "../../redux/features/auth/authApi";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "sonner";
 
@@ -19,13 +19,15 @@ export default function ProfileInfo() {
   const { user } = useAppSelector((state: RootState) => state.auth)
   const { device_token } = useAppSelector((state: RootState) => state.auth)
   const [updateProfileInfo, { isSuccess: isSuccessUpdateProfile }] = useUpdateProfileInfoMutation()
-  // const { isSuccess: isSuccessFetchProfile, data: profile } = useGetProfileInfoQuery({
-  //   headers: {
-  //     "authorization": device_token
-  //   }
-  // }, {
-  //   skip: device_token ? false : true
-  // })
+  const { isSuccess: isSuccessFetchProfile, data: profile } = useGetProfileInfoQuery({
+    headers: {
+      "authorization": "Bearer " + device_token
+    }
+  }, {
+    skip: device_token ? false : true
+  })
+
+  isSuccessFetchProfile && console.log(profile)
 
   const {
     register,
@@ -42,7 +44,7 @@ export default function ProfileInfo() {
     updateProfileInfo({
       body: data,
       headers: {
-        'authorization': device_token
+        'authorization': "Bearer " + device_token
       }
     })
   }
@@ -111,7 +113,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Phone</span>
               </div>
-              <input type="text" defaultValue={user?.phone || ''} className="input input-bordered w-full" />
+              <input type="text" {...register("phone")} defaultValue={user?.phone || ''} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -120,7 +122,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Country Phone Code</span>
               </div>
-              <select defaultValue={user?.phone_code || ''} className="input input-bordered w-full">
+              <select {...register("phone_code")} defaultValue={user?.phone_code || ''} className="input input-bordered w-full">
                 <option value="+1">+1 United States</option>
                 <option value="+44">+44 United Kingdom</option>
                 <option value="+91">+91 India</option>

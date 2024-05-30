@@ -37,9 +37,9 @@ export default function ProfileSidebar() {
                         </li>
                     </ul>
 
-                    <button type="submit" className="btn btn-sm bg-brand-600 hover:bg-brand-500 text-white mt-4">
+                    {/* <button type="submit" className="btn btn-sm bg-brand-600 hover:bg-brand-500 text-white mt-4">
                         Logout
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>
