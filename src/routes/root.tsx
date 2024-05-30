@@ -6,7 +6,6 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import ErrorPage from "../pages/error-page/ErrorPage";
-import Carts from "../pages/carts/Carts";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Info from "../pages/profile-info/profile-info";
 import ProfileLayout from "../layout/ProfileLayout";
@@ -15,6 +14,7 @@ import MyOrder from "../pages/my-history/MyOrder";
 import PlaceOrder from "../pages/place-order/PlaceOrder";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import VerifyAccount from "../pages/verify-account/VerifyAccount";
+import Checkout from "../pages/carts/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -27,9 +27,9 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "/carts",
+                path: "/checkout",
                 element: <PrivateRoute>
-                    <Carts />
+                    <Checkout />
                 </PrivateRoute>
             },
             {

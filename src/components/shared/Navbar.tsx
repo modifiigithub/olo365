@@ -3,11 +3,14 @@ import logo from "../../assets/images/logo-light.png"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
 import { userLoggedOut } from "../../redux/features/auth/authSlice"
 import { RootState } from "../../redux/app/store"
+import { FaRegUser } from "react-icons/fa6"
+import { IoCartOutline } from "react-icons/io5"
+import { handleSideDrawer } from "../../redux/features/drawer/drawerSlice"
 
 export default function Navbar() {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { device_token } = useAppSelector((state: RootState) => state.auth);
+    const { device_token, user } = useAppSelector((state: RootState) => state.auth);
     const { totalProduct } = useAppSelector((state: RootState) => state.cart);
 
     function handleLogout() {
@@ -27,25 +30,29 @@ export default function Navbar() {
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <h3 className="text-white text-lg">
-                        what's on your mind?
+                            what's on your mind?
                         </h3>
                     </div>
                     <div className="navbar-end">
-                        <div className="dropdown dropdown-end">
-                            <label htmlFor="my-drawer" role="button" className="btn btn-ghost btn-circle mr-3">
+                        <button>
+                            <label onClick={() => dispatch(handleSideDrawer(true))} aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">
                                 <div className="indicator text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    <IoCartOutline className="text-2xl" />
                                     <span className="badge badge-sm indicator-item">{totalProduct}</span>
                                 </div>
                             </label>
-                        </div>
-                        {device_token ? <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img alt="user profile" src="https://plus.unsplash.com/premium_photo-1666265087928-fe19db9887ad" />
+                        </button>
+                        {device_token && user ? <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost">
+                                <div className="text-white text-left flex items-center gap-2">
+                                    <FaRegUser className="text-lg" />
+                                    <p className="text-white w-20 line-clamp-1">{user?.name}</p>
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <div className="px-3 py-2">
+                                    {user?.email}
+                                </div>
                                 <li>
                                     <Link to="/profile">
                                         Profile

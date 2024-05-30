@@ -16,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 import productReducer from '../features/product/productSlice';
 import cartReducer from '../features/cart/cartSlice';
 import categoryReducer from '../features/category/categorySlice';
+import drawerReducer from "../features/drawer/drawerSlice"
 
 const persistConfig = {
   key: 'auth',
@@ -31,7 +32,8 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     product: productReducer,
     cart: persistedCartReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    drawer: drawerReducer
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

@@ -10,7 +10,7 @@ interface CartState {
 const initialState: CartState = {
     carts: [],
     totalPrice: 0,
-    totalProduct: 0
+    totalProduct: 0,
 }
 
 const calculateTotals = (carts: ICartItem[]) => {
