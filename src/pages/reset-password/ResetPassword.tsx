@@ -11,8 +11,8 @@ type Inputs = {
 }
 
 export default function ResetPassword() {
-    const [resetPassword, { }] = useResetPasswordMutation()
-    const { device_token } = useAppSelector((state: RootState) => state.auth)
+    // const [resetPassword, { }] = useResetPasswordMutation()
+    // const { device_token } = useAppSelector((state: RootState) => state.auth)
     const {
         register,
         handleSubmit,
