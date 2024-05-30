@@ -3,7 +3,7 @@ import { useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
 import { useUpdateProfileInfoMutation } from "../../redux/features/auth/authApi";
 import { useForm, SubmitHandler } from "react-hook-form"
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 type Inputs = {
   name: string;

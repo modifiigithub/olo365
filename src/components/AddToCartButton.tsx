@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import { useAppDispatch } from "../redux/app/hooks"
 import { addToCart } from "../redux/features/cart/cartSlice"
 import { ICartItem, IProduct } from "../types"
-import toast from "react-hot-toast"
+import { toast } from "sonner"
 
 interface AddToCartButtonProps {
     product: IProduct,

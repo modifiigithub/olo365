@@ -5,10 +5,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 import { useAppDispatch } from "../../redux/app/hooks";
 import { userLoggedIn } from "../../redux/features/auth/authSlice";
 import { User } from "../../types";
+import { toast } from "sonner";
 
 type Inputs = {
     email: string

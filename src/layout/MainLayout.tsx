@@ -5,12 +5,6 @@ import Footer from "../components/shared/Footer";
 import { RootState } from "../redux/app/store";
 import { useAppSelector } from "../redux/app/hooks";
 
-function DrawerButton() {
-    return (
-        <label htmlFor="my-drawer" className="btn btn-block">View cart</label>
-    )
-}
-
 export default function MainLayout() {
     const { carts } = useAppSelector((state: RootState) => state.cart);
 
@@ -27,7 +21,7 @@ export default function MainLayout() {
             <div className="drawer">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
-                    <Navbar drawerButton={<DrawerButton />} />
+                    <Navbar />
                     <Outlet />
                     <ScrollRestoration />
                     <Footer />

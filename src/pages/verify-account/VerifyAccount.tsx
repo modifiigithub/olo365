@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/svgs/logo-dark.svg";
 import { useState, useRef, useEffect } from "react";
 import { useVerifyOtpMutation } from "../../redux/features/auth/authApi";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export default function VerifyAccount() {
     const [verifyOtp, { isSuccess: isSuccessVerifyOtp, isError }] = useVerifyOtpMutation();

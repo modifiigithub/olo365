@@ -7,8 +7,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/features/auth/authApi";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 type Inputs = {
     name: string
