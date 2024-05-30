@@ -38,7 +38,7 @@ export default function CartItem({ size = "small", cart }: CartItemProps) {
                             </button>
                         </RemoveToCartButton>}
                         
-                        <input type="text" placeholder="" value={quantity} readOnly className="input input-sm input-bordered w-10 text-center font-semibold" />
+                        <input type="text" placeholder="" value={quantity} readOnly className="input input-sm input-bordered w-12 text-center font-semibold" />
                         
                         {isSuccess && data?.data && <AddToCartButton product={data?.data as IProduct}>
                             <button className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">

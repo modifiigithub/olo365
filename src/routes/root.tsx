@@ -14,7 +14,7 @@ import MyOrder from "../pages/my-history/MyOrder";
 import PlaceOrder from "../pages/place-order/PlaceOrder";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import VerifyAccount from "../pages/verify-account/VerifyAccount";
-import Checkout from "../pages/carts/Checkout";
+import Checkout from "../pages/checkout/Checkout";
 
 const router = createBrowserRouter([
     {

@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+type TDrawerType = "cart" | "address"
+
 interface DrawerState {
     openCartDrawer: boolean;
-    drawerType: "cart" | "location" | null
+    drawerType: TDrawerType | null
 }
 
 const initialState: DrawerState = {
-    openCartDrawer: true,
+    openCartDrawer: false,
     drawerType: null
 }
 
@@ -17,7 +19,7 @@ export const drawerSlice = createSlice({
         handleSideDrawer: (state, action: PayloadAction<boolean>) => {
             state.openCartDrawer = action.payload
         },
-        setDrawerType: (state, action: PayloadAction<"cart" | "location">) => {
+        setDrawerType: (state, action: PayloadAction<TDrawerType>) => {
             state.drawerType = action.payload
         }
     },
