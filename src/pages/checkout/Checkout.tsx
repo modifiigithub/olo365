@@ -17,7 +17,7 @@ export default function Checkout() {
     let content;
 
     if (carts.length > 0) {
-        content = carts.map(cart => <CartItem image="md" size="large" cart={cart} />)
+        content = carts.map(cart => <CartItem key={cart.id} image="md" size="large" cart={cart} />)
     } else {
         content = <p>Cart is empty</p>
     }

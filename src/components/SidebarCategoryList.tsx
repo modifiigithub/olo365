@@ -4,7 +4,7 @@ import { useGetCategoriesQuery } from "../redux/features/category/categoryApi";
 import { categoryFilter } from "../redux/features/category/categorySlice";
 import { ICategory } from "../types";
 
-export default function CategoryList() {
+export default function SidebarCategoryList() {
     const dispatch = useAppDispatch()
     const { category: categoryItem } = useAppSelector((state: RootState) => state.category);
     const { isLoading: isLoadingCategories, isSuccess: isSuccessCategories, data: categories } = useGetCategoriesQuery(undefined)
@@ -31,7 +31,7 @@ export default function CategoryList() {
         content = <p className="col-span-12">Something was wrong.</p>
     }
     return (
-        <div className="mt-3 sticky top-28">
+        <div className="mt-3 sticky top-28 pb-2 h-[85vh] overflow-x-scroll">
             {content}
         </div>
     )

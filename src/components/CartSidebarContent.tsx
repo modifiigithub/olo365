@@ -10,7 +10,7 @@ export default function CartSidebarContent() {
     let content;
 
     if (carts.length > 0) {
-        content = carts.map(cart => <CartItem image="lg" size="small" cart={cart} />)
+        content = carts.map(cart => <CartItem key={cart.id} image="lg" size="small" cart={cart} />)
     } else {
         content = <p>Cart is empty</p>
     }

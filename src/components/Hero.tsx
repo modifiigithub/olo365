@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import heroImage from "../assets/images/hero-bg.jpg"
 
 export default function Hero() {
@@ -11,7 +12,7 @@ export default function Hero() {
                 <h3 className="text-3xl md:text-5xl font-semibold">Indulge in Culinary Delights and </h3>
                 <h3 className="text-xl md:text-4xl font-semibold mt-4 md:mt-8">Unforgettable Dining Experiences</h3>
 
-                <button className="btn px-6 text-base border-brand-800 bg-brand-600 hover:bg-brand-500 text-white mt-12">Book a Table</button>
+                <Link to="/book-table" className="btn px-6 text-base border-brand-800 bg-brand-600 hover:bg-brand-500 text-white mt-12">Book a Table</Link>
             </div>
         </div>
     )

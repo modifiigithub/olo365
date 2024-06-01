@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { useResetPasswordMutation } from "../../redux/features/auth/authApi";
-import { useAppSelector } from "../../redux/app/hooks";
-import { RootState } from "../../redux/app/store";
+// import { useResetPasswordMutation } from "../../redux/features/auth/authApi";
+// import { useAppSelector } from "../../redux/app/hooks";
+// import { RootState } from "../../redux/app/store";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {

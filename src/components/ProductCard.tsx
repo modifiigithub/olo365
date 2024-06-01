@@ -7,7 +7,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
     return (
         <div className="col-span-12 md:col-span-6 lg:col-span-4 card card-compact bg-base-100 p-2 shadow-md border border-stone-200 overflow-hidden">
             <div className="card-body">
-                <h2 className="card-title font-bold text-xl">{product.name}</h2>
+                <h2 className="card-title font-bold text-xl md:text-2xl">{product.name}</h2>
                 <p className="line-clamp-2 text-stone-600 text-base mb-2">{product.description}</p>
                 <div className="flex items-center">
                     <p className="text-xl font-bold">${product.price}</p>

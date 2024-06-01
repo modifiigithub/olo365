@@ -15,6 +15,7 @@ import PlaceOrder from "../pages/place-order/PlaceOrder";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import VerifyAccount from "../pages/verify-account/VerifyAccount";
 import Checkout from "../pages/checkout/Checkout";
+import BookTable from "../pages/book-table/BookTable";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "place-order",
                 element: <PlaceOrder />
+            },
+            {
+                path: "book-table",
+                element: <BookTable />
             },
             {
                 path: "/profile",

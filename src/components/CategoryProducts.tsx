@@ -12,9 +12,8 @@ interface CategoryProductsProps {
 
 export default function CategoryProducts({ category }: CategoryProductsProps) {
     const { productType, productSort, searchKeyword } = useAppSelector((state: RootState) => state.product);
+    const { category: categoryId } = useAppSelector((state: RootState) => state.category);
     const { isLoading, isSuccess, data } = useGetProductsQuery({ category_ids: category.id });
-
-    console.log(data)
 
     let content: ReactNode;
 
@@ -53,13 +52,22 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                     <ProductCard key={product.id} product={product} />
                 ));
             } else {
-                content = "";
+                if (categoryId) {
+                    content = <p className="col-span-12">No product found.</p>;
+                } else {
+                    content = ""
+                }
             }
         } else {
-            content = "";
+            if (categoryId) {
+                content = <p className="col-span-12">No product found.</p>;
+            } else {
+                content = ""
+            }
         }
     } else if (isSuccess && data && data?.products?.length === 0) {
-        return <p className="col-span-12 mt-4">No product found.</p>;
+        // return <p className="col-span-12 mt-4">No product found.</p>;
+        content = "";
     } else {
         content = <p className="col-span-12">Something went wrong.</p>;
     }
