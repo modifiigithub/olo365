@@ -31,7 +31,7 @@ export default function SidebarCategoryList() {
         content = <p className="col-span-12">Something was wrong.</p>
     }
     return (
-        <div className="mt-3 sticky top-28 pb-2 h-[85vh] overflow-x-scroll">
+        <div className="mt-3 sticky top-28 pb-2 h-[85vh] overflow-y-scroll">
             {content}
         </div>
     )
