@@ -255,8 +255,8 @@ export default function BookTable() {
                                                     {!table.availability && <div className="absolute top-3 right-3 badge bg-red-500 text-white">
                                                         Not Available
                                                     </div>}
-                                                    <p className="my-2 text-xl"><b> Table Id:</b> {table.table_id}</p>
-                                                    <p className="text-lg"><b>Capacity:</b> {table.capacity}</p>
+                                                    <p className="my-2 text-xl mt-3"><b> Table Id:</b> {table.table_id}</p>
+                                                    <p className="text-base"><b>Capacity:</b> {table.capacity}</p>
 
                                                     <button className="btn btn-sm text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-3">Book Now</button>
                                                 </div>
