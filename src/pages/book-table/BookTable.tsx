@@ -181,7 +181,6 @@ const tables = [
     }
 ]
 
-
 export default function BookTable() {
     const { data } = useGetTablesQuery(undefined)
 
@@ -190,24 +189,48 @@ export default function BookTable() {
         <section className="container min-h-[80vh]">
             <div>
                 <h2 className="text-4xl font-semibold text-center mt-10">Reserve your perfect table</h2>
-
-                <div className="mt-10 flex justify-center gap-4">
+                <div className="mt-12 flex justify-center items-center gap-4">
                     <div>
                         <input type="date" placeholder="Type here" className="input input-bordered w-full" />
                     </div>
                     <div>
                         <select className="select select-bordered w-full">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                            <option value="2000-02-01T21:30:00">9:30 p.m.</option>
+                            <option value="2000-02-01T22:00:00">10:00 p.m.</option>
+                            <option value="2000-02-01T22:30:00">10:30 p.m.</option>
+                            <option value="2000-02-01T23:00:00">11:00 p.m.</option>
+                            <option value="2000-02-01T23:30:00">11:30 p.m.</option>
                         </select>
                     </div>
                     <div>
                         <select className="select select-bordered w-full">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                            <option value="1">1 person</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5 people</option>
+                            <option value="6">6 people</option>
+                            <option value="7">7 people</option>
+                            <option value="8">8 people</option>
+                            <option value="9">9 people</option>
+                            <option value="10">10 people</option>
+                            <option value="11">11 people</option>
+                            <option value="12">12 people</option>
+                            <option value="13">13 people</option>
+                            <option value="14">14 people</option>
+                            <option value="15">15 people</option>
+                            <option value="16">16 people</option>
+                            <option value="17">17 people</option>
+                            <option value="18">18 people</option>
+                            <option value="19">19 people</option>
+                            <option value="20">20 people</option>
+                            <option value="21">Larger party</option>
                         </select>
+                    </div>
+                    <div>
+                        <button className="btn text-white rounded-lg text-base bg-brand-600 hover:bg-brand-500">
+                            Let's go
+                        </button>
                     </div>
                 </div>
                 <div className="my-10">
@@ -224,7 +247,7 @@ export default function BookTable() {
                                     <div className="grid grid-cols-12 gap-6">
                                         {
                                             restaurant.tables.map(table =>
-                                                <div key={table.table_id} className="relative col-span-3 border border-stone-400 p-4 rounded-xl">
+                                                <div key={table.table_id} className="relative col-span-12 md:col-span-3 border border-stone-300 p-4 rounded-xl bg-white">
                                                     {table.availability && <div className="absolute top-3 right-3 badge bg-[#327df2] text-white">
                                                         Available
                                                     </div>}
@@ -232,8 +255,8 @@ export default function BookTable() {
                                                     {!table.availability && <div className="absolute top-3 right-3 badge bg-red-500 text-white">
                                                         Not Available
                                                     </div>}
-                                                    <p className="my-2"><b> Table Id:</b> {table.table_id}</p>
-                                                    <p><b>Capacity:</b> {table.capacity}</p>
+                                                    <p className="my-2 text-xl"><b> Table Id:</b> {table.table_id}</p>
+                                                    <p className="text-lg"><b>Capacity:</b> {table.capacity}</p>
 
                                                     <button className="btn btn-sm text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-3">Book Now</button>
                                                 </div>
