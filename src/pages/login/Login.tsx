@@ -7,7 +7,7 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../redux/app/hooks";
 import { userLoggedIn } from "../../redux/features/auth/authSlice";
-import { User } from "../../types";
+import { IUser } from "../../types";
 import { toast } from "sonner";
 
 type Inputs = {
@@ -29,7 +29,7 @@ export default function Login() {
             const message = data?.message ? data.message : "Login Successfully";
             toast.success(message)
 
-            const { id, role_id, name, email, device_token, address, phone, country, city, phone_code, zip_code } = data.data as User
+            const { id, role_id, name, email, device_token, address, phone, country, city, phone_code, zip_code } = data.data as IUser
 
             if (device_token) {
                 dispatch(userLoggedIn({

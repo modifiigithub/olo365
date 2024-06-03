@@ -4,7 +4,6 @@ import { RootState } from "../redux/app/store";
 import CartItem from "./CartItem";
 
 export default function CartSidebarContent() {
-
     const { carts, totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
 
     let content;

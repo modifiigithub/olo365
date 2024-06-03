@@ -15,7 +15,7 @@ import PlaceOrder from "../pages/place-order/PlaceOrder";
 import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import VerifyAccount from "../pages/verify-account/VerifyAccount";
 import Checkout from "../pages/checkout/Checkout";
-import BookTable from "../pages/book-table/BookTable";
+import BookTable from "../pages/table-book/TableBook";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
                 element: <PlaceOrder />
             },
             {
-                path: "book-table",
+                path: "table-book",
                 element: <BookTable />
             },
             {

@@ -54,7 +54,7 @@ export interface ICartItem {
     quantity: number;
 }
 
-export interface Table {
+export interface ITable {
     id: number;
     number: number;
     capacity: number;
@@ -68,7 +68,7 @@ export interface Table {
     updated_at: string;
 }
 
-export interface User {
+export interface IUser {
     address: string | null;
     city: string | null;
     country: string | null;
@@ -92,7 +92,7 @@ export interface User {
     zip_code: string | null;
 }
 
-export interface ProductApiResponse {
+export interface IProductApiResponse {
     total_size: number;
     limit: number;
     offset: number;

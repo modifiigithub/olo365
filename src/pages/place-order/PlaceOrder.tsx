@@ -1,7 +1,10 @@
+import { useAppSelector } from "../../redux/app/hooks";
+import { RootState } from "../../redux/app/store";
 import { useGetTablesQuery } from "../../redux/features/common/commonApi"
-import { Table } from "../../types";
+import { ITable } from "../../types";
 
 export default function PlaceOrder() {
+    const {  totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { data: tables, isLoading: isLoadingTables, isSuccess: isSuccessTables } = useGetTablesQuery(undefined)
 
     let tableOptions;
@@ -9,7 +12,7 @@ export default function PlaceOrder() {
     if (isLoadingTables) {
         tableOptions = <span className="loading loading-dots loading-sm"></span>
     } else if (isSuccessTables && tables?.data?.length > 0) {
-        tableOptions = tables?.data?.map((table: Table) => <option key={table.id}>Table ID: {table.id}</option>)
+        tableOptions = tables?.data?.map((table: ITable) => <option key={table.id}>Table ID: {table.id}</option>)
     } else {
         tableOptions = <p>Something was wrong.</p>
     }
@@ -19,7 +22,7 @@ export default function PlaceOrder() {
     if (isLoadingTables) {
         branchOptions = <span className="loading loading-dots loading-sm"></span>
     } else if (isSuccessTables && tables?.data?.length > 0) {
-        branchOptions = tables?.data?.map((table: Table) => <option>Branch ID: {table.branch_id}</option>)
+        branchOptions = tables?.data?.map((table: ITable) => <option>Branch ID: {table.branch_id}</option>)
     } else {
         branchOptions = <p>Something was wrong.</p>
     }
@@ -28,7 +31,7 @@ export default function PlaceOrder() {
         <div className="container h-screen">
             <h3 className="text-2xl font-bold mt-5">Place Order</h3>
 
-            <div className="grid grid-cols-12 gap-4">
+            <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-12 md:col-span-8">
                     <form className="mt-4">
                         <div className=" grid grid-cols-12 gap-6">
@@ -61,7 +64,7 @@ export default function PlaceOrder() {
                                 <div className="label">
                                     <span className="label-text">Order note</span>
                                 </div>
-                                <textarea className="textarea textarea-bordered h-24" placeholder="Order note"></textarea>
+                                <textarea className="textarea textarea-bordered h-24" placeholder="Order note"/>
                             </label>
                         </div>
 
@@ -72,10 +75,20 @@ export default function PlaceOrder() {
                         </div>
                     </form>
                 </div>
-                <div className="col-span-12 md:col-span-4"></div>
+                <div className="col-span-12 md:col-span-4">
+                    <div className="border border-stone-200 p-3 rounded-lg">
+                        <h3 className="text-xl font-bold">Order summary</h3>
+                        <div className="flex justify-between mt-5">
+                            <h3 className="text-lg font-semibold">Total Product:</h3>
+                            <p className="font-semibold">{totalProduct}</p>
+                        </div>
+                        <div className="flex justify-between mt-5">
+                            <h3 className="text-lg font-semibold">Total Price:</h3>
+                            <p className="bold">${totalPrice}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
     )
 }
