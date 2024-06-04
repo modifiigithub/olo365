@@ -52,15 +52,17 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                     <ProductCard key={product.id} product={product} />
                 ));
             } else {
+                content = ""
                 if (categoryId) {
-                    content = <p className="col-span-12">No product found.</p>;
+                    // content = <p className="col-span-12">No product found.</p>;
                 } else {
                     content = ""
                 }
             }
         } else {
+            content = ""
             if (categoryId) {
-                content = <p className="col-span-12">No product found.</p>;
+                // content = <p className="col-span-12">No product found.</p>;
             } else {
                 content = ""
             }

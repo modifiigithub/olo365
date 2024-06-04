@@ -8,6 +8,13 @@ export const commonApi = apiSlice.injectEndpoints({
                 url: `${base_url.COMMON_API_URL}/get-tables`
             }),
         }),
+        bookTable: builder.mutation({
+            query: (data) => ({
+                url: `${base_url.COMMON_API_URL}/book-table`,
+                method: "POST",
+                body: data
+            }),
+        }),
         getBars: builder.query({
             query: () => ({
                 url: `${base_url.COMMON_API_URL}/get-bars`
@@ -16,4 +23,4 @@ export const commonApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetBarsQuery, useGetTablesQuery } = commonApi;
+export const { useGetBarsQuery, useGetTablesQuery, useBookTableMutation } = commonApi;

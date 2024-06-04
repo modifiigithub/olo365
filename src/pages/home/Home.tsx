@@ -27,7 +27,8 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if (searchKeyword !== "" && productsContainerRef.current && productsContainerRef.current.children.length > 0) {
+        console.log(searchKeyword !== "")
+        if (searchKeyword !== "" && productsContainerRef.current && productsContainerRef?.current?.children?.length > 0) {
             setNoProductMessage(<p className="col-span-12 mt-5">No product found.</p>)
         } else {
             setNoProductMessage(<></>)
