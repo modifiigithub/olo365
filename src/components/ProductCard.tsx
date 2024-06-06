@@ -13,7 +13,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
                     <p className="text-xl font-bold">${product.price}</p>
                     <div className="card-actions justify-end">
                         <AddToCartButton product={product}>
-                            <button className="btn btn-md md:btn-sm lg:btn-md text-white rounded-full text-base bg-brand-600 hover:bg-brand-500">
+                            <button className="btn btn-md md:btn-sm lg:btn-md text-white text-base bg-brand-600 hover:bg-brand-500">
                                 <FaCartPlus />
                                 Add To Cart
                             </button>

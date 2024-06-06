@@ -62,3 +62,40 @@ export default function Home() {
         </>
     )
 }
+
+/**
+ * 
+
+
+{    "order_type": "take_away", // client
+    "delivery_address":{
+        "contact_person_name": "Sumit Madaan",
+        "contact_person_number": "9888117170",
+        "email": "sumit@yopmail.com",
+        "address": "22 Winifred, St Albans, Vic 3021",
+        "road": "test road",
+        "house": "58",
+        "floor": "2",
+        "is_guest": 0,
+        "postal_code": "45213",
+        "latitude": "30.4544848478",
+        "longitude": "76.8754212356",
+        "notes": "test note text",
+        "address_type":"Home",
+        "distance":10
+
+    },
+    "delivery_date": "2024-05-25",
+    "delivery_time": "23:17:40",
+    "guest_id":2,
+    "order_amount": 62.5, 
+    "branch_id": 1,
+    "payment_status": "unpaid", 
+    "payment_method": "cash_on_delivery",// clent 
+    "gratuity_amount": 0,
+    "gst_amount": 2.7,
+    "order_note": "" // client
+}
+
+ * 
+ */

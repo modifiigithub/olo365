@@ -52,17 +52,17 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                     <ProductCard key={product.id} product={product} />
                 ));
             } else {
-                content = ""
+                // content = ""
                 if (categoryId) {
-                    // content = <p className="col-span-12">No product found.</p>;
+                    content = <p className="col-span-12">No product found.</p>;
                 } else {
                     content = ""
                 }
             }
         } else {
-            content = ""
+            // content = ""
             if (categoryId) {
-                // content = <p className="col-span-12">No product found.</p>;
+                content = <p className="col-span-12">No product found.</p>;
             } else {
                 content = ""
             }
@@ -76,10 +76,12 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
 
     return (
         <>
-            {content != "" && <article className="my-6">
-                <h2 className="text-xl mb-4 mt-8 font-bold bg-brand-100 p-3 rounded-lg">{category.name}</h2>
-                <div className="grid grid-cols-12 gap-6">{content}</div>
-            </article>}
+            {content != "" &&
+                <article className="my-6">
+                    <h2 className="text-xl mb-4 mt-8 font-bold bg-brand-100 p-3 rounded-lg">{category.name}</h2>
+                    <div className="grid grid-cols-12 gap-6">{content}</div>
+                </article>
+            }
         </>
     );
 }

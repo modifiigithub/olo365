@@ -33,11 +33,6 @@ export default function Navbar() {
                             <img className="w-48" src={logo} alt="logo" />
                         </Link>
                     </div>
-                    <div className="navbar-center hidden lg:flex">
-                        <h3 className="text-white text-lg">
-                            what's on your mind?
-                        </h3>
-                    </div>
                     <div className="navbar-end">
                         <button>
                             <label onClick={openCartSidebarDrawer} aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">

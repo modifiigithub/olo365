@@ -4,7 +4,7 @@ import { useGetTablesQuery } from "../../redux/features/common/commonApi"
 import { ITable } from "../../types";
 
 export default function PlaceOrder() {
-    const {  totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
+    const { totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { data: tables, isLoading: isLoadingTables, isSuccess: isSuccessTables } = useGetTablesQuery(undefined)
 
     let tableOptions;
@@ -15,16 +15,6 @@ export default function PlaceOrder() {
         tableOptions = tables?.data?.map((table: ITable) => <option key={table.id}>Table ID: {table.id}</option>)
     } else {
         tableOptions = <p>Something was wrong.</p>
-    }
-
-    let branchOptions;
-
-    if (isLoadingTables) {
-        branchOptions = <span className="loading loading-dots loading-sm"></span>
-    } else if (isSuccessTables && tables?.data?.length > 0) {
-        branchOptions = tables?.data?.map((table: ITable) => <option>Branch ID: {table.branch_id}</option>)
-    } else {
-        branchOptions = <p>Something was wrong.</p>
     }
 
     return (
@@ -44,14 +34,14 @@ export default function PlaceOrder() {
                                 </select>
                             </label>
 
-                            <label className="form-control col-span-3">
+                            {/* <label className="form-control col-span-3">
                                 <div className="label">
                                     <span className="label-text">Pick the branch ID</span>
                                 </div>
                                 <select className="select select-bordered">
                                     {branchOptions}
                                 </select>
-                            </label>
+                            </label> */}
 
                             <label className="form-control col-span-3">
                                 <div className="label">
@@ -62,14 +52,57 @@ export default function PlaceOrder() {
 
                             <label className="form-control col-span-3">
                                 <div className="label">
+                                    <span className="label-text">Gst Amount</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
+                            <label className="form-control col-span-12">
+                                <div className="label">
                                     <span className="label-text">Order note</span>
                                 </div>
-                                <textarea className="textarea textarea-bordered h-24" placeholder="Order note"/>
+                                <textarea className="textarea textarea-bordered h-24" placeholder="Order note" />
                             </label>
                         </div>
 
+                        <h3 className="text-2xl font-semibold mt-5">Delivery address</h3>
+                        <div className="grid grid-cols-2">
+
+                            <div className="mt-2">
+                                <label className="form-control col-span-12">
+                                    <div className="label">
+                                        <span className="label-text">Contact person name</span>
+                                    </div>
+                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                </label>
+                                <label className="form-control col-span-12">
+                                    <div className="label">
+                                        <span className="label-text">Contact person number</span>
+                                    </div>
+                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                </label>
+                                <label className="form-control col-span-12">
+                                    <div className="label">
+                                        <span className="label-text">Email</span>
+                                    </div>
+                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                </label>
+                                <label className="form-control col-span-12">
+                                    <div className="label">
+                                        <span className="label-text"></span>
+                                    </div>
+                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                </label>  <label className="form-control col-span-12">
+                                    <div className="label">
+                                        <span className="label-text"></span>
+                                    </div>
+                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                </label>
+                            </div>
+                        </div>
+
                         <div>
-                            <button type="submit" className="btn text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">
+                            <button type="submit" className="btn text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
                                 Checkout
                             </button>
                         </div>

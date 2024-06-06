@@ -42,7 +42,7 @@ export default function Checkout() {
                     <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
                         <h2 className="font-bold text-lg">Add a delivery address:</h2>
                         <p className="mt-1 font-semibold text-stone-500">You seem to be in the new location</p>
-                        <button onClick={openAddAddressDrawer} className="btn btn-sm text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">
+                        <button onClick={openAddAddressDrawer} className="btn btn-sm text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
                             Add New
                         </button>
                     </div>
@@ -51,7 +51,7 @@ export default function Checkout() {
                         <h2 className="font-bold text-lg">Payment</h2>
                     </div>
                     <div>
-                        <Link to="/place-order" className="btn text-white rounded-full text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</Link>
+                        <Link to="/place-order" className="btn text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</Link>
                     </div>
                 </div>
 
