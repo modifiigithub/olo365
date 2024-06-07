@@ -42,7 +42,7 @@ export default function Navbar() {
                                 </div>
                             </label>
                         </button>
-                        {device_token && user ? <div className="dropdown dropdown-end">
+                        {device_token && user ? <div className="dropdown dropdown-end hidden md:block">
                             <div tabIndex={0} role="button" className="btn btn-ghost">
                                 <div className="text-white text-left flex items-center gap-2">
                                     <FaRegUser className="text-lg" />

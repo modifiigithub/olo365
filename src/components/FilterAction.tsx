@@ -6,6 +6,8 @@ import { IoIosSearch } from "react-icons/io";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { RiDrinks2Line } from "react-icons/ri";
 import { TiLeaf } from "react-icons/ti";
+import { FaBars } from "react-icons/fa6";
+import { handleSideDrawer, setDrawerType } from "../redux/features/drawer/drawerSlice";
 
 function ActionButtonGroup({ className }: {
     className?: string
@@ -55,11 +57,17 @@ export default function FilterAction() {
         dispatch(searchProducts(e.target.value))
     }
 
+    function handleOpenCategory() {
+        dispatch(setDrawerType("category"))
+        dispatch(handleSideDrawer(true))
+    }
+
     return (
         <div className="py-5 border-b border-slate-200 bg-white/90 backdrop-blur-lg">
             <div className="container grid grid-cols-12 justify- items-center gap-6 flex-col md:flex-row">
-                <div className="col-span-12 md:col-span-2">
+                <div className="col-span-12 md:col-span-2 flex justify-between items-center">
                     <h3 className="text-[28px] font-bold">Category</h3>
+                    <button className="btn block md:hidden" onClick={handleOpenCategory}><FaBars /></button>
                 </div>
                 <div className="col-span-12 lg:col-span-10 w-full flex flex-col lg:flex-row justify-between lg:items-center">
 

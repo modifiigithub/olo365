@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useAppSelector } from "../redux/app/hooks";
-import { RootState } from "../redux/app/store";
-import { useCreateNewAddressMutation } from "../redux/features/address/addressApi";
+import { useAppSelector } from "../../redux/app/hooks";
+import { RootState } from "../../redux/app/store";
+import { useCreateNewAddressMutation } from "../../redux/features/address/addressApi";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
@@ -13,7 +13,7 @@ type Inputs = {
 
 export default function AddAddressSidebarContent() {
     const { user, device_token } = useAppSelector((state: RootState) => state.auth)
-    const [createNewAddress, { isSuccess }] = useCreateNewAddressMutation()
+    const [createNewAddress, { isSuccess, isError }] = useCreateNewAddressMutation()
     const {
         register,
         handleSubmit
@@ -30,6 +30,12 @@ export default function AddAddressSidebarContent() {
             toast.success("Address create successful.")
         }
     }, [isSuccess])
+
+    useEffect(() => {
+        if (isError) {
+            toast.success("Address create failed.")
+        }
+    }, [isError])
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const { email, name, phone, phone_code } = user || {};

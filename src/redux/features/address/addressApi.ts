@@ -10,7 +10,7 @@ export const addressApi = apiSlice.injectEndpoints({
         }),
         createNewAddress: builder.mutation({
             query: (data) => ({
-                url: `${base_url.COMMON_API_URL}/addresses`,
+                url: `https://olo365.modifii.com/api/addresses`,
                 headers: data?.headers,
                 method: "POST",
                 body: data?.body,

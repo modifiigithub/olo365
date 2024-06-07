@@ -48,8 +48,6 @@ export default function CartItem({ size = "small", cart }: CartItemProps) {
                     </div>
 
                     <div className="flex justify-start items-center gap-1 mt-2">
-                        <p className="text-base text-red-500 font-medium">Remove</p>
-
                         <RemoveToCartButton product={data?.data as IProduct} type="product">
                             <button className="p-2 hover:bg-brand-200 rounded-full">
                                 <RiDeleteBin6Line className="text-lg cursor-pointer text-red-500" />

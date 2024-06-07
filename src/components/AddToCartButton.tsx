@@ -6,10 +6,11 @@ import { toast } from "sonner"
 
 interface AddToCartButtonProps {
     product: IProduct,
-    children: ReactNode
+    children: ReactNode;
+    className?: string;
 }
 
-export default function AddToCartButton({ product, children }: AddToCartButtonProps) {
+export default function AddToCartButton({ product, children, className }: AddToCartButtonProps) {
     const dispatch = useAppDispatch()
 
     function handleAddToCart(product: IProduct) {
@@ -25,7 +26,7 @@ export default function AddToCartButton({ product, children }: AddToCartButtonPr
     }
 
     return (
-        <div onClick={() => handleAddToCart(product)}>
+        <div className={className ? className : ""} onClick={() => handleAddToCart(product)}>
             {children}
         </div>
     )

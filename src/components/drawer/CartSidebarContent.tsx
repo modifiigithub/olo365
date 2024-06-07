@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../redux/app/hooks";
-import { RootState } from "../redux/app/store";
-import CartItem from "./CartItem";
+import { useAppSelector } from "../../redux/app/hooks";
+import { RootState } from "../../redux/app/store";
+import CartItem from "../CartItem";
+import DrawerCloseButton from "../DrawerCloseButton";
 
 export default function CartSidebarContent() {
     const { carts, totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
@@ -16,6 +17,9 @@ export default function CartSidebarContent() {
 
     return (
         <>
+            <div>
+                <DrawerCloseButton />
+            </div>
             <div className="sticky top-0 text-center bg-base-200/90 backdrop-blur-lg py-3">
                 <h3 className="text-xl font-bold">Cart Items</h3>
             </div>
@@ -35,8 +39,8 @@ export default function CartSidebarContent() {
                 </div>
             </div>
 
-            <div className="sticky bottom-0 text-center bg-base-200/90 backdrop-blur-lg py-3">
-                <Link to="/checkout" className="btn">Goto Checkout</Link>
+            <div className="sticky bottom-0 text-center bg-base-200/90 backdrop-blur-lg py-4">
+                <Link to="/checkout" className="btn bg-brand-600 hover:bg-brand-500 text-white">Checkout</Link>
             </div>
         </>
     )

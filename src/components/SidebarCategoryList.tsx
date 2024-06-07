@@ -3,8 +3,11 @@ import { RootState } from "../redux/app/store";
 import { useGetCategoriesQuery } from "../redux/features/category/categoryApi";
 import { categoryFilter } from "../redux/features/category/categorySlice";
 import { ICategory } from "../types";
+import DrawerCloseButton from "./DrawerCloseButton";
 
-export default function SidebarCategoryList() {
+export default function SidebarCategoryList({ type }: {
+    type: "sidebar" | "drawer"
+}) {
     const dispatch = useAppDispatch()
     const { category: categoryItem } = useAppSelector((state: RootState) => state.category);
     const { isLoading: isLoadingCategories, isSuccess: isSuccessCategories, data: categories } = useGetCategoriesQuery(undefined)
@@ -30,9 +33,20 @@ export default function SidebarCategoryList() {
     } else {
         content = <p className="col-span-12">Something was wrong.</p>
     }
+
     return (
-        <div className="mt-3 sticky top-28 pb-2 h-[85vh] overflow-y-scroll">
-            {content}
-        </div>
+        <>
+            {
+                type === "sidebar" ? <div className="mt-3 sticky top-28 pb-2 h-[85vh] overflow-y-scroll">
+                    {content}
+                </div> : <div>
+                    <DrawerCloseButton />
+
+                    <h2 className="text-xl font-bold mt-3 mb-5">Menu</h2>
+                    {content}
+                </div>
+            }
+
+        </>
     )
 }

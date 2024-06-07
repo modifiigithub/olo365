@@ -4,8 +4,9 @@ import Footer from "../components/shared/Footer";
 import { RootState } from "../redux/app/store";
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
 import { handleSideDrawer } from "../redux/features/drawer/drawerSlice";
-import CartSidebarContent from "../components/CartSidebarContent";
-import AddAddressSidebarContent from "../components/AddAddressSidebarContent";
+import CartSidebarContent from "../components/drawer/CartSidebarContent";
+import AddAddressSidebarContent from "../components/drawer/AddAddressSidebarContent";
+import SidebarCategoryList from "../components/SidebarCategoryList";
 
 export default function MainLayout() {
     const dispatch = useAppDispatch()
@@ -25,13 +26,9 @@ export default function MainLayout() {
                     <label onClick={() => dispatch(handleSideDrawer(false))} aria-label="close sidebar" className="drawer-overlay"></label>
                     {/* Sidebar content here */}
                     <div className="menu p-4 w-96 min-h-full bg-base-200 text-base-content">
-                        {
-                            drawerType === "cart" && <CartSidebarContent />
-                        }
-
-                        {
-                            drawerType === "address" && <AddAddressSidebarContent />
-                        }
+                        {drawerType === "cart" && <CartSidebarContent />}
+                        {drawerType === "address" && <AddAddressSidebarContent />}
+                        {drawerType === "category" && <SidebarCategoryList type="drawer" />}
                     </div>
                 </div>
             </div>
