@@ -1,17 +1,27 @@
 import { base_url } from "../../../config";
+import { RootState, store } from "../../app/store";
 import { apiSlice } from "../api/apiSlice";
 
 export const addressApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllAddress: builder.query({
-            query: () => ({
-                url: `${base_url.COMMON_API_URL}/addresses`
-            }),
+            query: () => {
+                const token = (store.getState() as RootState).auth.device_token;
+                console.log(token);
+                return {
+                    url: `${base_url.COMMON_API_URL}/addresses`,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+            },
         }),
         createNewAddress: builder.mutation({
             query: (data) => ({
-                url: `https://olo365.modifii.com/api/addresses`,
-                headers: data?.headers,
+                url: `${base_url.COMMON_API_URL}/addresses`,
+                headers: {
+                    Authorization: data?.headers.Authorization,
+                },
                 method: "POST",
                 body: data?.body,
             }),
@@ -21,5 +31,5 @@ export const addressApi = apiSlice.injectEndpoints({
 
 export const {
     useGetAllAddressQuery,
-    useCreateNewAddressMutation
+    useCreateNewAddressMutation,
 } = addressApi;

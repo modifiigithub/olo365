@@ -44,7 +44,6 @@ export interface ICategory {
     translations: unknown[];
 }
 
-
 export interface ICartItem {
     id: string;
     type: string;
@@ -97,4 +96,22 @@ export interface IProductApiResponse {
     limit: number;
     offset: number;
     products: IProduct[];
+}
+
+export interface IAddress {
+    id: number;
+    contact_person_name: string;
+    contact_person_number: string;
+    email: string;
+    address: string;
+    postal_code: string;
+    latitude: string;
+    longitude: string;
+    notes: string;
+    address_type: 'home' | 'work' | 'other';
+    road: string;
+    house: string;
+    floor: string;
+    distance: number;
+    is_guest: 0 | 1;
 }

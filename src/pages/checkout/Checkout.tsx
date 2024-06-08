@@ -4,9 +4,12 @@ import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
 import { useEffect } from "react";
 import { handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice";
+import { useGetAllAddressQuery } from "../../redux/features/address/addressApi";
+import { IAddress } from "../../types";
 
 export default function Checkout() {
     const dispatch = useAppDispatch()
+    const { data: address, isLoading: isLoadingFetchAddress, isSuccess: isSuccessFetchAddress } = useGetAllAddressQuery(undefined)
     const { carts, totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { user } = useAppSelector((state: RootState) => state.auth);
 
@@ -27,10 +30,34 @@ export default function Checkout() {
         dispatch(setDrawerType("address"))
     }
 
+    let addressContent;
+
+    if (isLoadingFetchAddress) {
+        addressContent = <>Loading...</>
+    } else if (isSuccessFetchAddress && address?.data?.length > 0) {
+        addressContent = address?.data?.map((item: IAddress) => <div key={item.id} className="col-span-12 md:col-span-4 bg-white p-4 rounded-lg">
+            <h2 className="font-bold text-lg capitalize">{item.address_type}</h2>
+            <p className="mt-1">{item.address}</p>
+            <p><b className="text-bold">Distance:</b> {item.distance} Mins</p>
+            <button className="btn btn-sm text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
+                Deliver Here
+            </button>
+        </div>)
+    } else if (isSuccessFetchAddress && address?.data?.length == 0) {
+        addressContent = <p>No address found</p>
+    } else {
+        addressContent = <p>Something was wrong.</p>
+    }
+
+    function calculateGST(totalItem: number, gstRate: number) {
+        const gstAmount = (gstRate / 100) * totalItem;
+
+        return Math.ceil(gstAmount)
+    }
+
     return (
         <section className="container py-6 min-h-[82vh]">
             <h3 className="text-2xl font-bold mb-4">Checkout</h3>
-
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-12 md:col-span-8">
                     <div className="bg-base-200 p-4 rounded-lg h-auto">
@@ -40,11 +67,18 @@ export default function Checkout() {
                     </div>
 
                     <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
-                        <h2 className="font-bold text-lg">Add a delivery address:</h2>
-                        <p className="mt-1 font-semibold text-stone-500">You seem to be in the new location</p>
-                        <button onClick={openAddAddressDrawer} className="btn btn-sm text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
-                            Add New
-                        </button>
+                        <div className="grid grid-cols-12 gap-4 mb-6">
+                            {
+                                addressContent
+                            }
+                            <div className="col-span-12 md:col-span-4 bg-white p-4 rounded-lg">
+                                <h2 className="font-bold text-lg">Add a delivery address:</h2>
+                                <p className="mt-1 font-semibold text-stone-500">You seem to be in the new location</p>
+                                <button onClick={openAddAddressDrawer} className="btn btn-sm text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
+                                    Add New
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
@@ -64,15 +98,20 @@ export default function Checkout() {
                         </div>
 
                         <div className="border-b border-stone-200 py-3 px-6">
-                            <h3 className="text-xl font-bold">Order summary</h3>
+                            <h3 className="text-xl font-bold">Bill Details</h3>
                             <div className="flex justify-between mt-5">
-                                <h3 className="text-lg font-semibold">Total Product:</h3>
+                                <h3 className="text-lg font-semibold">Total Item:</h3>
                                 <p className="font-bold">{totalProduct}</p>
                             </div>
                             <div className="flex justify-between mt-5">
                                 <h3 className="text-lg font-semibold">Total Price:</h3>
                                 <p className="font-bold">${totalPrice}</p>
                             </div>
+                            <div className="flex justify-between mt-5">
+                                <h3 className="text-lg font-semibold">GST Charges:</h3>
+                                <p className="font-bold">${calculateGST(totalProduct, 5)}</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>

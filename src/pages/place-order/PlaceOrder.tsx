@@ -66,39 +66,43 @@ export default function PlaceOrder() {
                         </div>
 
                         <h3 className="text-2xl font-semibold mt-5">Delivery address</h3>
-                        <div className="grid grid-cols-2">
+                        <div className="grid grid-cols-12 gap-6">
 
-                            <div className="mt-2">
-                                <label className="form-control col-span-12">
-                                    <div className="label">
-                                        <span className="label-text">Contact person name</span>
-                                    </div>
-                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
-                                </label>
-                                <label className="form-control col-span-12">
-                                    <div className="label">
-                                        <span className="label-text">Contact person number</span>
-                                    </div>
-                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
-                                </label>
-                                <label className="form-control col-span-12">
-                                    <div className="label">
-                                        <span className="label-text">Email</span>
-                                    </div>
-                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
-                                </label>
-                                <label className="form-control col-span-12">
-                                    <div className="label">
-                                        <span className="label-text"></span>
-                                    </div>
-                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
-                                </label>  <label className="form-control col-span-12">
-                                    <div className="label">
-                                        <span className="label-text"></span>
-                                    </div>
-                                    <input type="text" placeholder="Type number of people" className="input input-bordered" />
-                                </label>
-                            </div>
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text">Contact person name</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text">Contact person number</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text">Email</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text">order_amount</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text">payment_method</span>
+                                </div>
+                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                            </label>
+
                         </div>
 
                         <div>

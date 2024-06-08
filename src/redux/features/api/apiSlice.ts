@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
         const token = (getState() as RootState).auth.device_token;
 
         if (token) {
-            // headers.set('authorization', `${token}`);
+            // headers.set('authorization', `Bearer ${token}`);
         }
 
         return headers;
