@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice";
 import { useGetAllAddressQuery } from "../../redux/features/address/addressApi";
 import { IAddress } from "../../types";
+import SkeletonProductCard from "../../components/SkeletonProductCard";
 
 export default function Checkout() {
     const dispatch = useAppDispatch()
@@ -46,7 +47,11 @@ export default function Checkout() {
     let addressContent;
 
     if (isLoadingFetchAddress) {
-        addressContent = <>Loading...</>
+        addressContent = <>
+            {[...Array(5)].map((_, index) => (
+                <SkeletonProductCard key={index} className="col-span-12 md:col-span-4" />
+            ))}
+        </>
     } else if (isSuccessFetchAddress && address?.data?.length > 0) {
         addressContent = address?.data?.map((item: IAddress) => <div key={item.id} className="col-span-12 md:col-span-4 bg-white p-4 rounded-lg">
             <h2 className="font-bold text-lg capitalize">{item.address_type}</h2>
@@ -74,6 +79,7 @@ export default function Checkout() {
                     </div>
 
                     <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
+                        <h2 className="font-bold text-lg mb-3">Address: </h2>
                         <div className="grid grid-cols-12 gap-4 mb-6">
                             {
                                 addressContent
@@ -88,9 +94,9 @@ export default function Checkout() {
                         </div>
                     </div>
 
-                    <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
+                    {/* <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
                         <h2 className="font-bold text-lg">Payment</h2>
-                    </div>
+                    </div> */}
                     <div>
                         <Link to="/place-order" className="btn text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">Place Order</Link>
                     </div>
@@ -121,7 +127,7 @@ export default function Checkout() {
 
                             <div className="flex justify-between mt-5 pt-2 border-t-2">
                                 <h3 className="text-lg font-semibold">To Pay:</h3>
-                                <p className="font-bold">${gstAmount * totalProduct}</p>
+                                <p className="font-bold">${(gstAmount + totalPrice)?.toFixed(2)}</p>
                             </div>
 
                         </div>

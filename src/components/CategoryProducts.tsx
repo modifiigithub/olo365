@@ -21,7 +21,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
         content = (
             <>
                 {[...Array(6)].map((_, index) => (
-                    <SkeletonProductCard key={index} className="col-span-4" />
+                    <SkeletonProductCard key={index} className="col-span-12 md:col-span-4" />
                 ))}
             </>
         );

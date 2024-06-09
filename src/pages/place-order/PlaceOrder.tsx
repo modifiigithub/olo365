@@ -25,7 +25,7 @@ export default function PlaceOrder() {
                 <div className="col-span-12 md:col-span-8">
                     <form className="mt-4">
                         <div className=" grid grid-cols-12 gap-6">
-                            <label className="form-control col-span-3">
+                            <label className="form-control col-span-4">
                                 <div className="label">
                                     <span className="label-text">Pick the table ID</span>
                                 </div>
@@ -43,7 +43,7 @@ export default function PlaceOrder() {
                                 </select>
                             </label> */}
 
-                            <label className="form-control col-span-3">
+                            <label className="form-control col-span-4">
                                 <div className="label">
                                     <span className="label-text">Number of People</span>
                                 </div>
