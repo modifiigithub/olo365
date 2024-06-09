@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CartItem from "../../components/CartItem";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice";
 import { useGetAllAddressQuery } from "../../redux/features/address/addressApi";
 import { IAddress } from "../../types";
@@ -12,6 +12,19 @@ export default function Checkout() {
     const { data: address, isLoading: isLoadingFetchAddress, isSuccess: isSuccessFetchAddress } = useGetAllAddressQuery(undefined)
     const { carts, totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { user } = useAppSelector((state: RootState) => state.auth);
+    const [gstAmount, setGstAmount] = useState(0)
+
+    useEffect(() => {
+        function calculateGST(totalPrice: number, gstRate: number) {
+            const gstAmount = (gstRate / 100) * totalPrice;
+
+            return Math.ceil(gstAmount)
+        }
+
+        const result = calculateGST(totalPrice, 5)
+        setGstAmount(result);
+
+    }, [totalPrice])
 
     useEffect(() => {
         dispatch(handleSideDrawer(false))
@@ -47,12 +60,6 @@ export default function Checkout() {
         addressContent = <p>No address found</p>
     } else {
         addressContent = <p>Something was wrong.</p>
-    }
-
-    function calculateGST(totalItem: number, gstRate: number) {
-        const gstAmount = (gstRate / 100) * totalItem;
-
-        return Math.ceil(gstAmount)
     }
 
     return (
@@ -97,7 +104,7 @@ export default function Checkout() {
                             {content}
                         </div>
 
-                        <div className="border-b border-stone-200 py-3 px-6">
+                        <div className="border-b border-stone-200 py-4 px-6">
                             <h3 className="text-xl font-bold">Bill Details</h3>
                             <div className="flex justify-between mt-5">
                                 <h3 className="text-lg font-semibold">Total Item:</h3>
@@ -109,7 +116,12 @@ export default function Checkout() {
                             </div>
                             <div className="flex justify-between mt-5">
                                 <h3 className="text-lg font-semibold">GST Charges:</h3>
-                                <p className="font-bold">${calculateGST(totalProduct, 5)}</p>
+                                <p className="font-bold">${gstAmount}</p>
+                            </div>
+
+                            <div className="flex justify-between mt-5 pt-2 border-t-2">
+                                <h3 className="text-lg font-semibold">To Pay:</h3>
+                                <p className="font-bold">${gstAmount * totalProduct}</p>
                             </div>
 
                         </div>
