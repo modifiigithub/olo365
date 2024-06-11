@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
 import { RootState } from "../redux/app/store";
 import { handleSearchModal } from "../redux/features/drawer/drawerSlice";
+import ItemSearchInput from "./ItemSearchInput";
 import Products from "./Products";
 
 export default function SearchItemContainer() {
@@ -18,10 +19,9 @@ export default function SearchItemContainer() {
                 <div className="modal-box max-w-5xl">
                     <button onClick={closeModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
-
                     <h3 className="font-bold text-xl">Explore Menu Items</h3>
                     <div className="my-3">
-                        <input type="search" placeholder="Search Item" className="input input-bordered w-full" />
+                        <ItemSearchInput />
                     </div>
                     <div className="h-[28rem] overflow-y-scroll mt-5">
                         <Products />

@@ -18,7 +18,7 @@ export default function TopHorizontalCategoryList() {
                 {
                     isSuccessCategories && categories?.slice(0, 3)?.map((category: ICategory) =>
                         <div key={category.id}>
-                            <p onClick={() => handleCategoryFilter(category)} className="bg-brand-100 px-3 mr-3 text-base font-bold p-2 rounded-xl">{category.name}</p>
+                            <p onClick={() => handleCategoryFilter(category)} className="bg-brand-100 px-3 mr-3 text-sm cursor-pointer font-bold p-2 rounded-xl">{category.name}</p>
                         </div>
                     )
                 }
