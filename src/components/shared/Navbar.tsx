@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
 import { userLoggedOut } from "../../redux/features/auth/authSlice"
 import { RootState } from "../../redux/app/store"
 import { FaRegUser } from "react-icons/fa6"
-import { IoCartOutline } from "react-icons/io5"
-import { handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice"
+import { IoCartOutline, IoSearchOutline } from "react-icons/io5"
+import { handleSearchModal, handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice"
 
 export default function Navbar() {
     const dispatch = useAppDispatch()
@@ -24,6 +24,10 @@ export default function Navbar() {
         dispatch(setDrawerType("cart"))
     }
 
+    function openSearchModal() {
+        dispatch(handleSearchModal(true))
+    }
+
     return (
         <nav className="bg-black/90 backdrop-blur-xl sticky top-0 z-20">
             <div className="container">
@@ -34,6 +38,13 @@ export default function Navbar() {
                         </Link>
                     </div>
                     <div className="navbar-end">
+                        <button onClick={openSearchModal}>
+                            <label role="button" className="btn btn-ghost btn-circle">
+                                <div className="indicator bg-white p-2 rounded-full text-black">
+                                    <IoSearchOutline />
+                                </div>
+                            </label>
+                        </button>
                         <button>
                             <label onClick={openCartSidebarDrawer} aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">
                                 <div className="indicator text-white">

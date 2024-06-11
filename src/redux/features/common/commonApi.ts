@@ -5,7 +5,7 @@ export const commonApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getTables: builder.query({
             query: () => ({
-                url: `${base_url.COMMON_API_URL}/get-tables`
+                url: `https://staging.modifii.com/api/v1/olo/get-tables`
             }),
         }),
         bookTable: builder.mutation({

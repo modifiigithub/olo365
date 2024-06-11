@@ -11,7 +11,7 @@ interface CategoryProductsProps {
 }
 
 export default function CategoryProducts({ category }: CategoryProductsProps) {
-    const { productType, productSort, searchKeyword } = useAppSelector((state: RootState) => state.product);
+    const { productType, productSort } = useAppSelector((state: RootState) => state.product);
     const { category: categoryId } = useAppSelector((state: RootState) => state.category);
     const { isLoading, isSuccess, data } = useGetProductsQuery({ category_ids: category.id });
 
@@ -40,15 +40,9 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                 const priceB = Math.ceil(b.price);
                 return productSort === "asc" ? priceA - priceB : priceB - priceA;
             });
-            /**
-             * search product
-             */
-            const searchProductsContent = filteredProducts.filter((product: IProduct) =>
-                product?.name?.toLowerCase()?.includes(searchKeyword?.toLowerCase())
-            );
 
-            if (searchProductsContent.length > 0) {
-                content = searchProductsContent.map((product: IProduct) => (
+            if (filteredProducts.length > 0) {
+                content = filteredProducts.map((product: IProduct) => (
                     <ProductCard key={product.id} product={product} />
                 ));
             } else {

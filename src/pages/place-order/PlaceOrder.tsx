@@ -1,11 +1,17 @@
 import { useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
 import { useGetTablesQuery } from "../../redux/features/common/commonApi"
+// import { usePlaceOrderMutation } from "../../redux/features/order/orderApi";
 import { ITable } from "../../types";
 
 export default function PlaceOrder() {
     const { totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { data: tables, isLoading: isLoadingTables, isSuccess: isSuccessTables } = useGetTablesQuery(undefined)
+    // const [placeOrder, { isSuccess: isSuccessPlaceOrder, isLoading: isLoadingPlaceOrder }] = usePlaceOrderMutation()
+
+    // function handlePlaceOrder() {
+        
+    // }
 
     let tableOptions;
 
@@ -23,9 +29,9 @@ export default function PlaceOrder() {
 
             <div className="grid grid-cols-12 gap-8">
                 <div className="col-span-12 md:col-span-8">
-                    <form className="mt-4">
+                    <form className="mt-4 border border-stone-200 p-4 rounded-lg">
                         <div className=" grid grid-cols-12 gap-6">
-                            <label className="form-control col-span-4">
+                            <label className="form-control col-span-6">
                                 <div className="label">
                                     <span className="label-text">Pick the table ID</span>
                                 </div>
@@ -34,27 +40,29 @@ export default function PlaceOrder() {
                                 </select>
                             </label>
 
-                            {/* <label className="form-control col-span-3">
-                                <div className="label">
-                                    <span className="label-text">Pick the branch ID</span>
-                                </div>
-                                <select className="select select-bordered">
-                                    {branchOptions}
-                                </select>
-                            </label> */}
-
-                            <label className="form-control col-span-4">
+                            <label className="form-control col-span-6">
                                 <div className="label">
                                     <span className="label-text">Number of People</span>
                                 </div>
                                 <input type="text" placeholder="Type number of people" className="input input-bordered" />
                             </label>
 
-                            <label className="form-control col-span-3">
+                            <label className="form-control col-span-6">
                                 <div className="label">
-                                    <span className="label-text">Gst Amount</span>
+                                    <span className="label-text-alt">Order Type</span>
                                 </div>
-                                <input type="text" placeholder="Type number of people" className="input input-bordered" />
+                                <select className="select select-bordered">
+                                    <option value="take_away">Take Away</option>
+                                </select>
+                            </label>
+
+                            <label className="form-control col-span-6">
+                                <div className="label">
+                                    <span className="label-text-alt">Select Payment Method</span>
+                                </div>
+                                <select className="select select-bordered">
+                                    <option value="cash_on_delivery">Cash on delivery</option>
+                                </select>
                             </label>
 
                             <label className="form-control col-span-12">
@@ -65,7 +73,7 @@ export default function PlaceOrder() {
                             </label>
                         </div>
 
-                        <h3 className="text-2xl font-semibold mt-5">Delivery address</h3>
+                        {/* <h3 className="text-2xl font-semibold mt-5">Delivery address</h3>
                         <div className="grid grid-cols-12 gap-6">
 
                             <label className="form-control col-span-6">
@@ -103,7 +111,7 @@ export default function PlaceOrder() {
                                 <input type="text" placeholder="Type number of people" className="input input-bordered" />
                             </label>
 
-                        </div>
+                        </div> */}
 
                         <div>
                             <button type="submit" className="btn text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
@@ -113,7 +121,7 @@ export default function PlaceOrder() {
                     </form>
                 </div>
                 <div className="col-span-12 md:col-span-4">
-                    <div className="border border-stone-200 p-3 rounded-lg">
+                    <div className="border border-stone-200 p-3 rounded-lg mt-5">
                         <h3 className="text-xl font-bold">Order summary</h3>
                         <div className="flex justify-between mt-5">
                             <h3 className="text-lg font-semibold">Total Product:</h3>
@@ -129,3 +137,40 @@ export default function PlaceOrder() {
         </div>
     )
 }
+
+/**
+ * 
+
+
+{    "order_type": "take_away", // client
+    "delivery_address":{
+        "contact_person_name": "Sumit Madaan",
+        "contact_person_number": "9888117170",
+        "email": "sumit@yopmail.com",
+        "address": "22 Winifred, St Albans, Vic 3021",
+        "road": "test road",
+        "house": "58",
+        "floor": "2",
+        "is_guest": 0,
+        "postal_code": "45213",
+        "latitude": "30.4544848478",
+        "longitude": "76.8754212356",
+        "notes": "test note text",
+        "address_type":"Home",
+        "distance":10
+
+    },
+    "delivery_date": "2024-05-25",
+    "delivery_time": "23:17:40",
+    "guest_id":2,
+    "order_amount": 62.5, 
+    "branch_id": 1,
+    "payment_status": "unpaid", 
+    "payment_method": "cash_on_delivery",// clent 
+    "gratuity_amount": 0,
+    "gst_amount": 2.7,
+    "order_note": "" // client
+}
+
+ * 
+ */

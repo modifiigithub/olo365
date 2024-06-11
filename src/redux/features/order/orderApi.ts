@@ -7,13 +7,14 @@ export const orderApi = apiSlice.injectEndpoints({
                 url: "/table/order/list"
             }),
         }),
-        addOrder: builder.mutation({
-            query: () => ({
-                url: "/table/order/place",
-                method: "POST"
+        placeOrder: builder.mutation({
+            query: (data) => ({
+                url: "https://staging.modifii.com/api/v1/olo/order/place",
+                method: "POST",
+                body: data
             }),
         }),
     }),
 });
 
-export const { useAddOrderMutation, useGetOrdersQuery } = orderApi;
+export const { usePlaceOrderMutation, useGetOrdersQuery } = orderApi;

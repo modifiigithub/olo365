@@ -50,7 +50,7 @@ export default function Products() {
         productsContent = <p className="col-span-12">Something was wrong.</p>
     }
     return (
-        <div className="col-span-12 md:col-span-10 mt-4">
+        <div className="col-span-12 md:col-span-10">
             <div className="grid grid-cols-12 gap-6 mb-6">
                 {productsContent}
             </div>
