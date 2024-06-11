@@ -25,10 +25,10 @@ export default function TopHorizontalCategoryList() {
             </div>
 
             <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn m-1">
+                <div tabIndex={10} role="button" className="btn m-1">
                     <FaBars className="text-lg" />
                 </div>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <ul tabIndex={10} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 md:w-[50vw] md:h-80 md:overflow-y-scroll">
                     {
                         categories?.map((category: ICategory) => <li onClick={() => handleCategoryFilter(category)}><a>{category?.name}</a></li>)
                     }

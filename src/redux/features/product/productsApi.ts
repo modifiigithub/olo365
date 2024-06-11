@@ -10,6 +10,10 @@ export const categoryApi = apiSlice.injectEndpoints({
                     url += `?category_ids=${query?.category_ids}`
                 }
 
+                if (query?.limit) {
+                    url += `?limit=${query?.limit}`
+                }
+
                 return { url }
             }
         }),

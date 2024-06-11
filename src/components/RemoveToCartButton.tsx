@@ -27,7 +27,7 @@ export default function RemoveToCartButton({ product, children, type = "quantity
             dispatch(removeItemFromCart(obj))
         }
         
-        toast.error("Product remove to cart success.")
+        toast.error("Item removed successfully")
     }
 
     return (

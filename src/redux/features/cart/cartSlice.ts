@@ -5,12 +5,14 @@ interface CartState {
     carts: ICartItem[];
     totalPrice: number;
     totalProduct: number;
+    addToCartModal: ICartItem | null
 }
 
 const initialState: CartState = {
     carts: [],
     totalPrice: 0,
     totalProduct: 0,
+    addToCartModal: null,
 }
 
 const calculateTotals = (carts: ICartItem[]) => {
@@ -69,10 +71,13 @@ export const cartSlice = createSlice({
             const { totalPrice, totalProduct } = calculateTotals(state.carts);
             state.totalPrice = Number(totalPrice.toFixed(2));
             state.totalProduct = totalProduct;
+        },
+        handleAddToCartModal: (state, action: PayloadAction<ICartItem>) => {
+            state.addToCartModal = action.payload
         }
     },
 });
 
-export const { addToCart, removeToCart, removeItemFromCart } = cartSlice.actions;
+export const { addToCart, removeToCart, removeItemFromCart, handleAddToCartModal } = cartSlice.actions;
 
 export default cartSlice.reducer;

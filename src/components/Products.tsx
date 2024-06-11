@@ -7,8 +7,10 @@ import { IProduct } from "../types";
 import ProductCard from "./ProductCard";
 
 export default function Products() {
-    const { productType, productSort } = useAppSelector((state: RootState) => state.product)
-    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery(undefined)
+    const { searchKeyword } = useAppSelector((state: RootState) => state.product)
+    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery({
+        limit: 100
+    })
 
     let productsContent: string | number | boolean | JSX.Element | Iterable<ReactNode> | null | undefined;
 
@@ -23,25 +25,16 @@ export default function Products() {
         </>
     } else if (isSuccessProducts && products?.products?.length > 0) {
         /**
-         * filter by product type
+         * search product
         */
-        const filterProductsResult = products?.products?.filter((product: IProduct) => product.product_type.includes(productType))
+        const searchProductsContent = products?.products?.filter((product: IProduct) =>
+            product?.name?.toLowerCase()?.includes(searchKeyword?.toLowerCase())
+        );
 
-        /**
-         * sort by price
-         */
-        if (filterProductsResult && filterProductsResult?.length > 0) {
-            const sortedProducts = filterProductsResult.sort((a: IProduct, b: IProduct) => {
-                if (productSort === "asc") {
-                    return Math.ceil(a.price) - Math.ceil(b.price);
-                } else {
-                    return Math.ceil(b.price) - Math.ceil(a.price);
-                }
-            });
-
-            productsContent = sortedProducts.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
+        if (searchProductsContent?.length > 0) {
+            productsContent = searchProductsContent?.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
         } else {
-            productsContent = <p className="col-span-12">No products found.</p>
+            productsContent = <p className="col-span-12">No product found.</p>
         }
 
     } else if (isSuccessProducts && products?.data?.data?.length == 0) {
@@ -49,6 +42,7 @@ export default function Products() {
     } else {
         productsContent = <p className="col-span-12">Something was wrong.</p>
     }
+
     return (
         <div className="col-span-12 md:col-span-10">
             <div className="grid grid-cols-12 gap-6 mb-6">

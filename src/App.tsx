@@ -9,7 +9,7 @@ export default function App() {
     <HelmetProvider>
       <RouterProvider router={router} />
       <Toaster
-        position="bottom-center"
+        position="top-center"
       />
     </HelmetProvider>
   )

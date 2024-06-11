@@ -22,7 +22,7 @@ export default function AddToCartButton({ product, children, className }: AddToC
         }
 
         dispatch(addToCart(obj))
-        toast.success("Product add to cart success.")
+        toast.success("Item added successfully")
     }
 
     return (
