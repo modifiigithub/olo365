@@ -4,25 +4,17 @@ import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { RootState } from "../../redux/app/store";
 import { useEffect, useState } from "react";
 import { handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice";
-import { useGetAllAddressQuery } from "../../redux/features/address/addressApi";
-import { IAddress } from "../../types";
-import SkeletonProductCard from "../../components/SkeletonProductCard";
+import { calculateGST } from "../../utils/calculateGST";
+import DeliverAddress from "../../components/DeliverAddress";
 
 export default function Checkout() {
     const dispatch = useAppDispatch()
-    const { data: address, isLoading: isLoadingFetchAddress, isSuccess: isSuccessFetchAddress } = useGetAllAddressQuery(undefined)
     const { carts, totalPrice, totalProduct } = useAppSelector((state: RootState) => state.cart);
     const { user } = useAppSelector((state: RootState) => state.auth);
     const [gstAmount, setGstAmount] = useState(0)
 
     useEffect(() => {
-        function calculateGST(totalPrice: number, gstRate: number) {
-            const gstAmount = (gstRate / 100) * totalPrice;
-
-            return Math.ceil(gstAmount)
-        }
-
-        const result = calculateGST(totalPrice, 5)
+        const result = calculateGST(totalPrice, 5);
         setGstAmount(result);
 
     }, [totalPrice])
@@ -44,29 +36,6 @@ export default function Checkout() {
         dispatch(setDrawerType("address"))
     }
 
-    let addressContent;
-
-    if (isLoadingFetchAddress) {
-        addressContent = <>
-            {[...Array(5)].map((_, index) => (
-                <SkeletonProductCard key={index} className="col-span-12 md:col-span-4" />
-            ))}
-        </>
-    } else if (isSuccessFetchAddress && address?.data?.length > 0) {
-        addressContent = address?.data?.map((item: IAddress) => <div key={item.id} className="col-span-12 md:col-span-4 bg-white p-4 rounded-lg">
-            <h2 className="font-bold text-lg capitalize">{item.address_type}</h2>
-            <p className="mt-1">{item.address}</p>
-            <p><b className="text-bold">Distance:</b> {item.distance} Mins</p>
-            <button className="btn btn-sm text-white text-base bg-brand-600 hover:bg-brand-500 mt-5">
-                Deliver Here
-            </button>
-        </div>)
-    } else if (isSuccessFetchAddress && address?.data?.length == 0) {
-        addressContent = <p>No address found</p>
-    } else {
-        addressContent = <p>Something was wrong.</p>
-    }
-
     return (
         <section className="container py-6 min-h-[82vh]">
             <h3 className="text-2xl font-bold mb-4">Checkout</h3>
@@ -81,9 +50,8 @@ export default function Checkout() {
                     <div className="bg-base-200 p-4 rounded-lg h-auto mt-5">
                         <h2 className="font-bold text-lg mb-3">Address: </h2>
                         <div className="grid grid-cols-12 gap-4 mb-6">
-                            {
-                                addressContent
-                            }
+                            <DeliverAddress />
+
                             <div className="col-span-12 md:col-span-4 bg-white p-4 rounded-lg">
                                 <h2 className="font-bold text-lg">Add a delivery address:</h2>
                                 <p className="mt-1 font-semibold text-stone-500">You seem to be in the new location</p>
@@ -129,7 +97,6 @@ export default function Checkout() {
                                 <h3 className="text-lg font-semibold">To Pay:</h3>
                                 <p className="font-bold">${(gstAmount + totalPrice)?.toFixed(2)}</p>
                             </div>
-
                         </div>
                     </div>
                 </div>

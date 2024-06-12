@@ -17,6 +17,7 @@ import productReducer from '../features/product/productSlice';
 import cartReducer from '../features/cart/cartSlice';
 import categoryReducer from '../features/category/categorySlice';
 import drawerReducer from "../features/drawer/drawerSlice"
+import addressReducer from "../features/address/addressSlice"
 
 const persistConfig = {
   key: 'auth',
@@ -25,6 +26,7 @@ const persistConfig = {
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+const persistedAddressReducer = persistReducer(persistConfig, addressReducer);
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +35,8 @@ export const store = configureStore({
     product: productReducer,
     cart: persistedCartReducer,
     category: categoryReducer,
-    drawer: drawerReducer
+    drawer: drawerReducer,
+    address: persistedAddressReducer
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

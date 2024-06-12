@@ -18,7 +18,9 @@ export default function RemoveToCartButton({ product, children, type = "quantity
 
         const obj: ICartItem = {
             id: id?.toString(),
-            description, name, price, quantity: 1, type: product_type
+            description, name, price, quantity: 1, type: product_type,
+            variations: "Testing variations",
+            variant: "Testing variant",
         }
 
         if (type === "quantity") {
@@ -26,7 +28,7 @@ export default function RemoveToCartButton({ product, children, type = "quantity
         } else {
             dispatch(removeItemFromCart(obj))
         }
-        
+
         toast.error("Item removed successfully")
     }
 

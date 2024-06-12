@@ -18,7 +18,9 @@ export default function AddToCartButton({ product, children, className }: AddToC
 
         const obj: ICartItem = {
             id: id?.toString(),
-            description, name, price, quantity: 1, type: product_type
+            description, name, price, quantity: 1, type: product_type,
+            variations: "Testing variations",
+            variant: "Testing variant",
         }
 
         dispatch(addToCart(obj))

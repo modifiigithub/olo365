@@ -7,7 +7,7 @@ export const addressApi = apiSlice.injectEndpoints({
         getAllAddress: builder.query({
             query: () => {
                 const token = (store.getState() as RootState).auth.device_token;
-                console.log(token);
+
                 return {
                     url: `${base_url.COMMON_API_URL}/addresses`,
                     headers: {

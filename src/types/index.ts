@@ -51,6 +51,8 @@ export interface ICartItem {
     price: number;
     description: string;
     quantity: number;
+    variations: string;
+    variant: string;
 }
 
 export interface ITable {
