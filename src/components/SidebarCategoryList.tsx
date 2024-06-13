@@ -4,7 +4,7 @@ import { useGetCategoriesQuery } from "../redux/features/category/categoryApi";
 import { categoryFilter } from "../redux/features/category/categorySlice";
 import { ICategory } from "../types";
 import DrawerCloseButton from "./DrawerCloseButton";
-
+ 
 export default function SidebarCategoryList({ type }: {
     type: "sidebar" | "drawer"
 }) {

@@ -10,12 +10,12 @@ import SidebarCategoryList from "../components/SidebarCategoryList";
 
 export default function MainLayout() {
     const dispatch = useAppDispatch()
-    const { openCartDrawer, drawerType } = useAppSelector((state: RootState) => state.drawer);
+    const { openDrawer, drawerType } = useAppSelector((state: RootState) => state.drawer);
 
     return (
         <>
             <div className="drawer">
-                <input id="cart-drawer" checked={openCartDrawer} type="checkbox" className="drawer-toggle" />
+                <input id="cart-drawer" checked={openDrawer} type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Navbar />
                     <Outlet />

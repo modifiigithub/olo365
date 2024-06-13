@@ -141,9 +141,35 @@ export default function Hero() {
                         <TableBookSection />
                     }
 
-                    {delivery && <div>delivery</div>}
-                    {pickup && <div>pickup</div>}
+                    {delivery && <div>
+                        <h3 className="text-lg font-semibold mt-3">Place order with</h3>
 
+                        <div className="mt-3">
+                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <img className="w-12" src="https://lh3.googleusercontent.com/IYQies5sD3ybA6ALbhPNvfXXYlwQ4W1Kc0ySK9v1_8X29YLva7hkIbTymKJsKUabkNw=s80-pd-e1" alt="" />
+                                <p className="text-lg font-semibold">Storefront by DoorDash</p>
+                            </div>
+
+                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <img className="w-12" src="https://lh3.googleusercontent.com/zJ9Iizr7BNNtBYIMSmlIwWiJzPdveC6ehq99dic7_THEoZY4Jd0KMuIrvZilZ2ihnKc=s80-pd-e1" alt="" />
+                                <p className="text-lg font-semibold">DoorDash</p>
+                            </div>
+
+                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <img className="w-12" src="https://lh3.googleusercontent.com/MP73XMZO--gd4oI7ygSuCjAaALyFxZaOL4WQfuwMY46rpiB9JKNg3d7OfnQND9GOsz0=s80-pd-e1" alt="" />
+                                <p className="text-lg font-semibold">SkipTheDishes</p>
+                            </div>
+
+                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <img className="w-12" src="https://lh3.googleusercontent.com/8gu-mASJGE9_palCvno_QpoUZ8kd13pYYp_nuhdP54w6tJHQRXdX8QgQegI6AvBqReA=s80-pd-e1" alt="" />
+                                <p className="text-lg font-semibold">UberEats</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    }
+
+                    {pickup && <div>pickup</div>}
 
                     <label htmlFor="book-table-modal" className="w-8 h-8 flex justify-center items-center cursor-pointer bg-slate-200 hover:bg-slate-300 rounded-full absolute top-2 right-2">
                         <IoMdClose className="text-lg" />

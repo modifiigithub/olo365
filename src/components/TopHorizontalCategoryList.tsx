@@ -1,8 +1,9 @@
-import { FaBars } from "react-icons/fa6"
+import { FaBars, FaBarsStaggered } from "react-icons/fa6"
 import { ICategory } from "../types"
 import { useGetCategoriesQuery } from "../redux/features/category/categoryApi"
 import { useAppDispatch } from "../redux/app/hooks"
 import { categoryFilter } from "../redux/features/category/categorySlice"
+import { setDrawerType } from "../redux/features/drawer/drawerSlice"
 
 export default function TopHorizontalCategoryList() {
     const dispatch = useAppDispatch()
@@ -12,9 +13,13 @@ export default function TopHorizontalCategoryList() {
         dispatch(categoryFilter(category))
     }
 
+    function openMobileSidebarCategory() {
+        dispatch(setDrawerType("category"))
+    }
+
     return (
-        <div className="flex justify-between items-center mt-5">
-            <div className="flex">
+        <div className="flex justify-end md:justify-between items-center mt-5">
+            <div className="hidden md:flex">
                 {
                     isSuccessCategories && categories?.slice(0, 3)?.map((category: ICategory) =>
                         <div key={category.id}>
@@ -24,7 +29,11 @@ export default function TopHorizontalCategoryList() {
                 }
             </div>
 
-            <div className="dropdown dropdown-end">
+            <button className="block md:hidden btn" onClick={openMobileSidebarCategory}>
+                <FaBarsStaggered />
+            </button>
+
+            <div className="hidden md:block dropdown dropdown-end">
                 <div tabIndex={10} role="button" className="btn m-1">
                     <FaBars className="text-lg" />
                 </div>

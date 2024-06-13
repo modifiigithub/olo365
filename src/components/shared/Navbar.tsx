@@ -5,7 +5,7 @@ import { userLoggedOut } from "../../redux/features/auth/authSlice"
 import { RootState } from "../../redux/app/store"
 import { FaRegUser } from "react-icons/fa6"
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5"
-import { handleSearchModal, handleSideDrawer, setDrawerType } from "../../redux/features/drawer/drawerSlice"
+import { handleSearchModal } from "../../redux/features/drawer/drawerSlice"
 
 export default function Navbar() {
     const dispatch = useAppDispatch()
@@ -17,11 +17,6 @@ export default function Navbar() {
         dispatch(userLoggedOut())
         localStorage.clear()
         navigate("/")
-    }
-
-    function openCartSidebarDrawer() {
-        dispatch(handleSideDrawer(true))
-        dispatch(setDrawerType("cart"))
     }
 
     function openSearchModal() {
@@ -46,7 +41,7 @@ export default function Navbar() {
                             </label>
                         </button>
                         <button>
-                            <label onClick={openCartSidebarDrawer} aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">
+                            <label aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">
                                 <div className="indicator text-white">
                                     <IoCartOutline className="text-2xl" />
                                     <span className="badge badge-sm indicator-item">{totalProduct}</span>

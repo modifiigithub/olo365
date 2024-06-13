@@ -3,19 +3,21 @@ import { Helmet } from "react-helmet-async";
 import FilterAction from "../../components/FilterAction";
 import Hero from "../../components/Hero";
 import { useGetCategoriesQuery } from "../../redux/features/category/categoryApi";
-import { ICategory } from "../../types";
+import { ICartItem, ICategory } from "../../types";
 import Loader from "../../components/Loader";
 import { RootState } from "../../redux/app/store";
 import { useAppSelector } from "../../redux/app/hooks";
 import DrawerCloseButton from "../../components/DrawerCloseButton";
 import SearchItemContainer from "../../components/SearchItemContainer";
 import TopHorizontalCategoryList from "../../components/TopHorizontalCategoryList";
+import { MdDeleteOutline } from "react-icons/md";
 // const SidebarCategoryList = lazy(() => import('../../components/SidebarCategoryList'));
 const CategoryProducts = lazy(() => import('../../components/CategoryProducts'));
 
 export default function Home() {
     const { bottomCartDrawer } = useAppSelector((state: RootState) => state.drawer);
     const { category } = useAppSelector((state: RootState) => state.category);
+    const { carts } = useAppSelector((state: RootState) => state.cart);
     const { isSuccess: isSuccessCategories, data: categories } = useGetCategoriesQuery(undefined)
 
     let content;
@@ -37,9 +39,9 @@ export default function Home() {
             <SearchItemContainer />
 
             <div className="container">
-                <div className="grid grid-cols-12">
+                <FilterAction />
+                <div className="grid grid-cols-12 gap-6">
                     <div className="col-span-12 md:col-span-9">
-                        <FilterAction />
                         <Suspense fallback={<Loader />}>
                             <TopHorizontalCategoryList />
 
@@ -47,6 +49,32 @@ export default function Home() {
                                 {content}
                             </div>
                         </Suspense>
+                    </div>
+                    <div className="col-span-12 md:col-span-3">
+                        <h2 className="text-xl mb-4 mt-8 font-bold">Your Order</h2>
+
+                        <div>
+                            {
+                                carts.map((item: ICartItem, index) => <div key={item.id} className="my-5">
+                                    <div className="flex gap-4">
+                                        <p className="text-lg font-semibold">{index + 1}.</p>
+
+                                        <div className="flex justify-between w-full">
+                                            <div>
+                                                <h2 className="text-xl font-semibold">{item.name}</h2>
+                                                <p>{item.description}</p>
+                                            </div>
+                                            <div className="font-semibold">
+                                                <p>${item.price}</p>
+                                                <button className="btn btn-sm mt-1">
+                                                    <MdDeleteOutline className="text-lg" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
