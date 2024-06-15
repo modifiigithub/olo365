@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import logo from "../../assets/images/logo-light.png"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks"
 import { userLoggedOut } from "../../redux/features/auth/authSlice"
@@ -15,6 +15,7 @@ import { GrDatabase } from "react-icons/gr"
 
 export default function Navbar() {
     const dispatch = useAppDispatch()
+    const location = useLocation();
     const navigate = useNavigate()
     const { device_token, user } = useAppSelector((state: RootState) => state.auth);
     const { totalProduct, carts } = useAppSelector((state: RootState) => state.cart);
@@ -29,7 +30,7 @@ export default function Navbar() {
     function openSearchModal() {
         dispatch(handleSearchModal(true))
     }
-
+    console.log(location)
     return (
         <>
             <nav className="bg-black/90 backdrop-blur-xl sticky top-0 z-20">
@@ -41,13 +42,13 @@ export default function Navbar() {
                             </Link>
                         </div>
                         <div className="navbar-end">
-                            <button onClick={openSearchModal}>
+                            {location.pathname === "/" && <button onClick={openSearchModal}>
                                 <label role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator bg-white p-2 rounded-full text-black">
                                         <IoSearchOutline />
                                     </div>
                                 </label>
-                            </button>
+                            </button>}
                             <button>
                                 <label onClick={() => setOpenCartModal(true)} aria-label="Open Cart Drawer" role="button" className="btn btn-ghost btn-circle mr-3">
                                     <div className="indicator text-white">
@@ -72,7 +73,9 @@ export default function Navbar() {
                                             Profile
                                         </Link>
                                     </li>
-                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                    <li>
+                                        <button onClick={handleLogout}>Logout</button>
+                                    </li>
                                 </ul>
                             </div> : <Link to="/login" className="btn bg-brand-600 hover:bg-brand-700 text-white border-brand-400">Login</Link>}
                         </div>

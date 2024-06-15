@@ -29,7 +29,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
         /**
          * filter by product type
          */
-        let filteredProducts = data.products.filter((product: IProduct) => product.product_type.includes(productType));
+        let filteredProducts = data?.products?.filter((product: IProduct) => product.product_type.includes(productType));
 
         if (filteredProducts.length > 0) {
             /**

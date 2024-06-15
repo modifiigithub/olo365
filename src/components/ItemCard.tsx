@@ -66,7 +66,7 @@ export default function ItemCard({ product }: { product: IProduct }) {
                                         </button>
                                     </>
 
-                                    <input type="text" placeholder="" value={itemQuantity} readOnly className="input input-sm input-bordered w-12 text-center font-semibold" />
+                                    <input type="text" placeholder="" value={itemQuantity} readOnly className="input input-sm input-bordered w-12 text-center font-semibold text-xl" />
 
                                     <>
                                         <button onClick={handleIncreaseQuantity} className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">

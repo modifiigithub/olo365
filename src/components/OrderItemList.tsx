@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/app/hooks";
 import { RootState } from "../redux/app/store";
 import { ICartItem } from "../types";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import RemoveToCartButton from "./button/RemoveToCartButton";
 
 export default function OrderItemList() {
@@ -26,8 +26,8 @@ export default function OrderItemList() {
                                 <div className="font-semibold">
                                     <p>${item.price}</p>
                                     <RemoveToCartButton removeItem={item} removeType="item">
-                                        <button className="btn btn-sm btn-error text-white mt-1">
-                                            <MdDeleteOutline className="text-xl" />
+                                        <button className="p-3 text-red-600 mt-1">
+                                            <MdDelete className="text-xl" />
                                         </button>
                                     </RemoveToCartButton>
                                 </div>
@@ -47,7 +47,6 @@ export default function OrderItemList() {
 
                 <Link to="/checkout">
                     <button className="w-full mt-4 btn border-brand-800 bg-brand-600 hover:bg-brand-500 text-white">Checkout</button>
-
                 </Link>
             </div>
         </>
