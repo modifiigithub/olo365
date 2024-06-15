@@ -3,7 +3,7 @@ import { useAppSelector } from "../redux/app/hooks";
 import { RootState } from "../redux/app/store";
 import { useGetProductsQuery } from "../redux/features/product/productsApi";
 import { ICategory, IProduct } from "../types";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ItemCard";
 import SkeletonProductCard from "./SkeletonProductCard";
 
 interface CategoryProductsProps {
@@ -48,7 +48,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
             } else {
                 // content = ""
                 if (categoryId) {
-                    content = <p className="col-span-12">No product found.</p>;
+                    content = <p className="col-span-12">No item found.</p>;
                 } else {
                     content = ""
                 }
@@ -56,13 +56,13 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
         } else {
             // content = ""
             if (categoryId) {
-                content = <p className="col-span-12">No product found.</p>;
+                content = <p className="col-span-12">No item found.</p>;
             } else {
                 content = ""
             }
         }
     } else if (isSuccess && data && data?.products?.length === 0) {
-        // return <p className="col-span-12 mt-4">No product found.</p>;
+        // return <p className="col-span-12 mt-4">No item found.</p>;
         content = "";
     } else {
         content = <p className="col-span-12">Something went wrong.</p>;

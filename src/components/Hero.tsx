@@ -1,6 +1,9 @@
 import { useState } from "react"
 import heroImage from "../assets/images/hero-bg.jpg"
 import { IoMdClose } from "react-icons/io"
+import { FiExternalLink } from "react-icons/fi"
+import { FaShop } from "react-icons/fa6"
+import { SiDoordash } from "react-icons/si"
 
 function TableBookSection() {
     const [bookTableDate, setBookTableDate] = useState<string | null>(null)
@@ -144,32 +147,75 @@ export default function Hero() {
                     {delivery && <div>
                         <h3 className="text-lg font-semibold mt-3">Place order with</h3>
 
-                        <div className="mt-3">
-                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
-                                <img className="w-12" src="https://lh3.googleusercontent.com/IYQies5sD3ybA6ALbhPNvfXXYlwQ4W1Kc0ySK9v1_8X29YLva7hkIbTymKJsKUabkNw=s80-pd-e1" alt="" />
-                                <p className="text-lg font-semibold">Storefront by DoorDash</p>
+                        <div className="mt-4">
+                            <div className="flex justify-between items-center cursor-pointer mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <div className="flex gap-2 items-center">
+                                    <FaShop className="text-4xl text-brand-500" />
+                                    <p className="text-lg font-semibold">Storefront by DoorDash</p>
+                                </div>
+                                <FiExternalLink className="text-lg" />
                             </div>
 
-                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
-                                <img className="w-12" src="https://lh3.googleusercontent.com/zJ9Iizr7BNNtBYIMSmlIwWiJzPdveC6ehq99dic7_THEoZY4Jd0KMuIrvZilZ2ihnKc=s80-pd-e1" alt="" />
-                                <p className="text-lg font-semibold">DoorDash</p>
+                            <div className="flex justify-between items-center cursor-pointer mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <div className="flex gap-2 items-center">
+                                    <SiDoordash className="text-4xl text-[#f52e08]" />
+                                    <p className="text-lg font-semibold">DoorDash</p>
+                                </div>
+                                <FiExternalLink className="text-lg" />
                             </div>
 
-                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
-                                <img className="w-12" src="https://lh3.googleusercontent.com/MP73XMZO--gd4oI7ygSuCjAaALyFxZaOL4WQfuwMY46rpiB9JKNg3d7OfnQND9GOsz0=s80-pd-e1" alt="" />
-                                <p className="text-lg font-semibold">SkipTheDishes</p>
+                            <div className="flex justify-between items-center cursor-pointer mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <div className="flex gap-2 items-center">
+                                    <img className="w-12" src="https://lh3.googleusercontent.com/MP73XMZO--gd4oI7ygSuCjAaALyFxZaOL4WQfuwMY46rpiB9JKNg3d7OfnQND9GOsz0=s80-pd-e1" alt="" />
+                                    <p className="text-lg font-semibold">SkipTheDishes</p>
+                                </div>
+                                <FiExternalLink className="text-lg" />
                             </div>
 
-                            <div className="flex gap-2 items-center mb-3 hover:bg-base-200 p-2 rounded-lg">
-                                <img className="w-12" src="https://lh3.googleusercontent.com/8gu-mASJGE9_palCvno_QpoUZ8kd13pYYp_nuhdP54w6tJHQRXdX8QgQegI6AvBqReA=s80-pd-e1" alt="" />
-                                <p className="text-lg font-semibold">UberEats</p>
-                            </div>
 
+                            <div className="flex justify-between items-center cursor-pointer mb-3 hover:bg-base-200 p-2 rounded-lg">
+                                <div className="flex gap-2 items-center">
+                                    {/* <SiUbereats className="text-4xl" /> */}
+                                    <img className="w-12" src="https://lh3.googleusercontent.com/8gu-mASJGE9_palCvno_QpoUZ8kd13pYYp_nuhdP54w6tJHQRXdX8QgQegI6AvBqReA=s80-pd-e1" alt="" />
+                                    <p className="text-lg font-semibold">UberEats</p>
+                                </div>
+                                <FiExternalLink className="text-lg" /></div>
                         </div>
+
                     </div>
                     }
 
-                    {pickup && <div>pickup</div>}
+                    {pickup && <div className="text-center mt-10">
+                        <h2 className="text-lg mb-4 font-medium">When Would You Like Your Order</h2>
+                        <button className="btn btn-lg">
+                            Later
+                        </button>
+
+                        <form>
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text text-center w-full mt-6">Select Date</span>
+                                </div>
+                                <select className="select select-bordered w-full">
+                                    <option value="2024-06-10" disabled>10/6/2024 (today) (close) Monday</option>
+                                    <option value="2024-06-11">11/6/2024 Tuesday</option>
+                                    <option value="2024-06-12">12/6/2024 Wednesday</option>
+                                    <option value="2024-06-13">13/6/2024 Thursday</option>
+                                    <option value="2024-06-14">14/6/2024 Friday</option>
+                                    <option value="2024-06-15">15/6/2024 Saturday</option>
+                                    <option value="2024-06-16">16/6/2024 Sunday</option>
+                                    <option value="2024-06-17">17/6/2024 Monday</option>
+                                    <option value="2024-06-18">18/6/2024 Tuesday</option>
+                                    <option value="2024-06-19">19/6/2024 Wednesday</option>
+                                    <option value="2024-06-20">20/6/2024 Thursday</option>
+                                    <option value="2024-06-21">21/6/2024 Friday</option>
+                                    <option value="2024-06-22">22/6/2024 Saturday</option>
+                                    <option value="2024-06-23">23/6/2024 Sunday</option>
+                                    <option value="2024-06-24">24/6/2024 Monday</option>
+                                </select>
+                            </label>
+                        </form>
+                    </div>}
 
                     <label htmlFor="book-table-modal" className="w-8 h-8 flex justify-center items-center cursor-pointer bg-slate-200 hover:bg-slate-300 rounded-full absolute top-2 right-2">
                         <IoMdClose className="text-lg" />

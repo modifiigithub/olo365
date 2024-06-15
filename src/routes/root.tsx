@@ -16,6 +16,7 @@ import ForgotPassword from "../pages/forgot-password/ForgotPassword";
 import VerifyAccount from "../pages/verify-account/VerifyAccount";
 import Checkout from "../pages/checkout/Checkout";
 import BookTable from "../pages/table-book/TableBook";
+import Restaurant from "../pages/restaurant/Restaurant";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <Home />
+            },
+            {
+                path: "restaurant",
+                element: <Restaurant />
             },
             {
                 path: "/checkout",

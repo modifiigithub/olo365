@@ -1,18 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type TDrawerType = "cart" | "address" | "category" | null
+type TDrawerType = null | "cart" | "address" | "category" | "order"
 
 interface DrawerState {
     openDrawer: boolean;
     drawerType: TDrawerType | null;
-    bottomCartDrawer: boolean;
     searchModalMode: boolean
 }
 
 const initialState: DrawerState = {
     openDrawer: false,
     drawerType: null,
-    bottomCartDrawer: false,
     searchModalMode: false
 }
 
@@ -31,9 +29,6 @@ export const drawerSlice = createSlice({
             state.drawerType = null;
             state.openDrawer = false;
         },
-        handleBottomCartDrawer: (state, action: PayloadAction<boolean>) => {
-            state.bottomCartDrawer = action.payload
-        },
         handleSearchModal: (state, action: PayloadAction<boolean>) => {
             state.searchModalMode = action.payload
         }
@@ -44,7 +39,6 @@ export const {
     handleSideDrawer,
     setDrawerType,
     closeDrawer,
-    handleBottomCartDrawer,
     handleSearchModal
 } = drawerSlice.actions;
 

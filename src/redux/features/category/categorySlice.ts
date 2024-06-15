@@ -13,8 +13,8 @@ export const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
-        categoryFilter: (state, action: PayloadAction<ICategory>) => {
-            if (state.category?.id === action.payload.id) {
+        categoryFilter: (state, action: PayloadAction<ICategory | null>) => {
+            if (action.payload && state.category?.id === action.payload.id) {
                 state.category = null
             } else {
                 state.category = action.payload

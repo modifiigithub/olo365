@@ -4,7 +4,7 @@ import SkeletonProductCard from "./SkeletonProductCard";
 import { useAppSelector } from "../redux/app/hooks";
 import { RootState } from "../redux/app/store";
 import { IProduct } from "../types";
-import ProductCard from "./ProductCard";
+import ItemCard from "./ItemCard";
 
 export default function Products() {
     const { searchKeyword } = useAppSelector((state: RootState) => state.product)
@@ -32,9 +32,9 @@ export default function Products() {
         );
 
         if (searchProductsContent?.length > 0) {
-            productsContent = searchProductsContent?.map((product: IProduct) => <ProductCard key={product.id} product={product} />)
+            productsContent = searchProductsContent?.map((product: IProduct) => <ItemCard key={product.id} product={product} />)
         } else {
-            productsContent = <p className="col-span-12">No product found.</p>
+            productsContent = <p className="col-span-12">No item found.</p>
         }
 
     } else if (isSuccessProducts && products?.data?.data?.length == 0) {

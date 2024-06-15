@@ -46,7 +46,7 @@ export interface ICategory {
 
 export interface ICartItem {
     id: string;
-    type: string;
+    type: ProductType;
     name: string;
     price: number;
     description: string;
