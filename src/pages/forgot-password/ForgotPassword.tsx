@@ -1,5 +1,5 @@
 import { MdOutlineMail } from "react-icons/md";
-import logo from "../../assets/svgs/logo-dark.svg"
+import logo from "../../assets/images/logo-dark.png";
 import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {

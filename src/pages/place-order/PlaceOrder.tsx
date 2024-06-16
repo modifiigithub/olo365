@@ -17,7 +17,7 @@ export default function PlaceOrder() {
     const { totalPrice, totalProduct, carts } = useAppSelector((state: RootState) => state.cart);
     const { address: delivery_address } = useAppSelector((state: RootState) => state.address);
     // const { data: tables, isLoading: isLoadingTables, isSuccess: isSuccessTables } = useGetTablesQuery(undefined)
-    const [placeOrder, { isSuccess: isSuccessPlaceOrder, isLoading: isLoadingPlaceOrder, isError:isErrorPlaceOrder }] = usePlaceOrderMutation()
+    const [placeOrder, { isSuccess: isSuccessPlaceOrder, isLoading: isLoadingPlaceOrder, isError: isErrorPlaceOrder }] = usePlaceOrderMutation()
     // const { data: address, isLoading: isLoadingFetchAddress, isSuccess: isSuccessFetchAddress } = useGetAllAddressQuery(undefined)
 
     const { register, handleSubmit } = useForm<Inputs>();
@@ -34,6 +34,8 @@ export default function PlaceOrder() {
             delivery_time: "23:17:40",
             guest_id: 2,
         }
+
+        console.log(JSON.stringify(obj))
 
         placeOrder(obj)
     }
@@ -70,7 +72,7 @@ export default function PlaceOrder() {
         <div className="container min-h-[80vh]">
             <h3 className="text-2xl font-bold mt-5">Place Order</h3>
 
-            <div className="grid grid-cols-12 gap-8">
+            <div className="grid grid-cols-12 gap-8 mb-10">
                 <div className="col-span-12 md:col-span-8">
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-4 border border-stone-200 p-4 rounded-lg">
                         <div className=" grid grid-cols-12 gap-6">
@@ -105,6 +107,8 @@ export default function PlaceOrder() {
                                 </div>
                                 <select {...register("payment_method")} className="select select-bordered">
                                     <option value="cash_on_delivery">Cash on delivery</option>
+                                    <option value="credit_debit_card">Credit/Debit card</option>
+                                    <option value="wallet">Wallet</option>
                                 </select>
                             </label>
 
@@ -189,3 +193,6 @@ export default function PlaceOrder() {
 
  * 
  */
+
+
+

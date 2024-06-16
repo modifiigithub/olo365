@@ -1,6 +1,6 @@
 import { MdOutlineMail } from "react-icons/md";
 import { IoKeyOutline } from "react-icons/io5";
-import logo from "../../assets/svgs/logo-dark.svg";
+import logo from "../../assets/images/logo-dark.png";
 import { CiPhone } from "react-icons/ci";
 import { FaUser } from "react-icons/fa";
 import { useForm, SubmitHandler } from "react-hook-form";

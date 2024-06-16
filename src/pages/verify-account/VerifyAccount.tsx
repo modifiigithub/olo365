@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/svgs/logo-dark.svg";
+import logo from "../../assets/images/logo-dark.png";
 import { useState, useRef, useEffect } from "react";
 import { useVerifyOtpMutation } from "../../redux/features/auth/authApi";
 import { toast } from "sonner";

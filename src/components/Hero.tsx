@@ -191,11 +191,16 @@ export default function Hero() {
                     </div>
                     }
 
-                    {pickup && <div className="text-center mt-10">
+                    {pickup && <div className="text-center my-10">
                         <h2 className="text-lg mb-4 font-medium">When Would You Like Your Order</h2>
-                        <button className="btn btn-lg">
-                            Later
-                        </button>
+                        <div className="flex justify-center gap-4">
+                            <button className="btn btn-lg">
+                                Later
+                            </button>
+                            <button className="btn btn-lg">
+                                Now
+                            </button>
+                        </div>
 
                         <form>
                             <label className="form-control w-full">

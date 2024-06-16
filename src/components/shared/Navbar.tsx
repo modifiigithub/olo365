@@ -8,7 +8,7 @@ import { IoCartOutline, IoSearchOutline } from "react-icons/io5"
 import { handleSearchModal } from "../../redux/features/drawer/drawerSlice"
 import { useState } from "react"
 import { ICartItem } from "../../types"
-import { MdOutlineDelete } from "react-icons/md"
+import { MdDelete } from "react-icons/md"
 import RemoveToCartButton from "../button/RemoveToCartButton"
 import AddToCartButton from "../button/AddToCartButton"
 import { GrDatabase } from "react-icons/gr"
@@ -30,7 +30,7 @@ export default function Navbar() {
     function openSearchModal() {
         dispatch(handleSearchModal(true))
     }
-    console.log(location)
+
     return (
         <>
             <nav className="bg-black/90 backdrop-blur-xl sticky top-0 z-20">
@@ -127,8 +127,8 @@ export default function Navbar() {
                                                 <td>${cart.price}</td>
                                                 <td>
                                                     <RemoveToCartButton removeItem={cart} removeType="item">
-                                                        <button className="btn btn-sm btn-error text-white">
-                                                            <MdOutlineDelete className="text-lg" />
+                                                        <button className="p-3 text-red-600 mt-1">
+                                                            <MdDelete className="text-xl" />
                                                         </button>
                                                     </RemoveToCartButton>
                                                 </td>

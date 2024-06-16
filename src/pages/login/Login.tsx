@@ -1,6 +1,6 @@
 import { MdOutlineMail } from "react-icons/md";
 import { IoKeyOutline } from "react-icons/io5";
-import logo from "../../assets/svgs/logo-dark.svg";
+import logo from "../../assets/images/logo-dark.png";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
