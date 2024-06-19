@@ -11,6 +11,7 @@ import SearchItemContainer from "../../components/SearchItemContainer";
 import TopHorizontalCategoryList from "../../components/TopHorizontalCategoryList";
 import OrderItemList from "../../components/OrderItemList";
 import BottomDrawer from "../../components/drawer/BottomCartDrawer";
+import InfiniteScroll from "react-infinite-scroll-component";
 // const SidebarCategoryList = lazy(() => import('../../components/SidebarCategoryList'));
 const CategoryProducts = lazy(() => import('../../components/CategoryProducts'));
 
@@ -46,7 +47,13 @@ export default function Home() {
                             <TopHorizontalCategoryList />
 
                             <div className="col-span-12 md:col-span-10">
-                                {content}
+                                {/* <InfiniteScroll
+                                    dataLength={categories?.length ? categories?.length : 0}
+                                    hasMore={true}
+                                    loader={<Loader />}
+                                >
+                                </InfiniteScroll> */}
+                                    {content}
                             </div>
                         </Suspense>
                     </div>
@@ -57,61 +64,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-            {/* {bottomCartDrawer &&
-                <div className="fixed md:hidden bottom-0 w-full h-screen left-0 right-0 top-0 bg-black/50 flex items-end">
-                    <div className="w-full bg-base-200 px-4 py-8">
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <h2 className="card-title font-bold text-xl md:text-2xl">Samosa 2 pc</h2>
-                                <p className="line-clamp-2 text-stone-600 text-base mb-2">Samosa 2 pc with chutney</p>
-                            </div>
-                            <DrawerCloseButton />
-                        </div>
-
-                        <div className="flex mt-4">
-                            <div>
-                                <button className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">
-                                    <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        strokeWidth={0}
-                                        version="1.2"
-                                        baseProfile="tiny"
-                                        viewBox="0 0 24 24"
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path d="M18 11h-12c-1.104 0-2 .896-2 2s.896 2 2 2h12c1.104 0 2-.896 2-2s-.896-2-2-2z" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <input
-                                type="text"
-                                className="input input-sm input-bordered w-12 text-center font-semibold"
-                                defaultValue={1}
-                            />
-                            <div>
-                                <button className="btn bg-brand-600 hover:bg-brand-500 text-white btn-sm">
-                                    <svg
-                                        stroke="currentColor"
-                                        fill="currentColor"
-                                        strokeWidth={0}
-                                        viewBox="0 0 448 512"
-                                        height="1em"
-                                        width="1em"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            } */}
         </>
     )
 }

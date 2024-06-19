@@ -4,7 +4,7 @@ export const categoryApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query({
             query: (query) => {
-                let url = "/products/latest"
+                let url = "/olo/products"
 
                 if (query?.category_ids) {
                     url += `?category_ids=${query?.category_ids}`
@@ -12,6 +12,10 @@ export const categoryApi = apiSlice.injectEndpoints({
 
                 if (query?.limit) {
                     url += `?limit=${query?.limit}`
+                }
+
+                if (query?.keyword) {
+                    url += `?keyword=${query?.keyword}`
                 }
 
                 return { url }

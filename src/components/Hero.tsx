@@ -122,7 +122,7 @@ export default function Hero() {
                     </label> */}
 
                     <div className="mt-12 md:mt-24">
-                        <label htmlFor="book-table-modal" className="font-bold rounded-lg px-8 py-4 text-2xl md:text-[2.5rem] border-brand-800 bg-brand-700 hover:bg-brand-600 text-white">
+                        <label htmlFor="book-table-modal" className="cursor-pointer font-bold rounded-lg px-8 py-4 text-2xl md:text-[2.5rem] border-brand-800 bg-brand-700 hover:bg-brand-600 text-white">
                             Select Service
                         </label>
                     </div>

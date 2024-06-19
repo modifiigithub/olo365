@@ -13,7 +13,7 @@ interface CategoryProductsProps {
 export default function CategoryProducts({ category }: CategoryProductsProps) {
     const { productType, productSort } = useAppSelector((state: RootState) => state.product);
     const { category: categoryId } = useAppSelector((state: RootState) => state.category);
-    const { isLoading, isSuccess, data } = useGetProductsQuery({ category_ids: category.id });
+    const { isLoading, isSuccess, data: products } = useGetProductsQuery({ category_ids: category.id });
 
     let content: ReactNode;
 
@@ -25,11 +25,11 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                 ))}
             </>
         );
-    } else if (isSuccess && data && data.products.length > 0) {
+    } else if (isSuccess && products && products?.data?.length > 0) {
         /**
          * filter by product type
          */
-        let filteredProducts = data?.products?.filter((product: IProduct) => product.product_type.includes(productType));
+        let filteredProducts = products?.data?.filter((product: IProduct) => product.product_type.includes(productType));
 
         if (filteredProducts.length > 0) {
             /**
@@ -61,7 +61,7 @@ export default function CategoryProducts({ category }: CategoryProductsProps) {
                 content = ""
             }
         }
-    } else if (isSuccess && data && data?.products?.length === 0) {
+    } else if (isSuccess && products && products?.data?.length === 0) {
         // return <p className="col-span-12 mt-4">No item found.</p>;
         content = "";
     } else {

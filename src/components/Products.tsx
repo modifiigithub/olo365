@@ -6,11 +6,17 @@ import { RootState } from "../redux/app/store";
 import { IProduct } from "../types";
 import ItemCard from "./ItemCard";
 
-export default function Products() {
+interface ProductsProps {
+    query: {
+        keyword?: string;
+        category_ids?: number;
+        limit?: number;
+    }
+}
+
+export default function Products({ query }: ProductsProps) {
     const { searchKeyword } = useAppSelector((state: RootState) => state.product)
-    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery({
-        limit: 100
-    })
+    const { isLoading: isLoadingProducts, isSuccess: isSuccessProducts, data: products } = useGetProductsQuery(query)
 
     let productsContent: string | number | boolean | JSX.Element | Iterable<ReactNode> | null | undefined;
 
