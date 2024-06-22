@@ -10,7 +10,7 @@ export const commonApi = apiSlice.injectEndpoints({
         }),
         bookTable: builder.mutation({
             query: (data) => ({
-                url: `${base_url.COMMON_API_URL}/book-table`,
+                url: `https://staging.modifii.com/api/v1/olo/book-table`,
                 method: "POST",
                 body: data
             }),

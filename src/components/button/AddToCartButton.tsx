@@ -21,7 +21,7 @@ export default function AddToCartButton({ cartItem, children, className, quantit
             description, name, price, quantity,
             type,
             variations: "Testing variations",
-            variant: "Testing variant",
+            kitchen_note: ""
         }
 
         dispatch(addToCart(obj))
