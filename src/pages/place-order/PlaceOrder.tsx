@@ -5,6 +5,7 @@ import { usePlaceOrderMutation } from "../../redux/features/order/orderApi";
 import { calculateGST } from "../../utils/calculateGST";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import axios from "axios";
 
 type Inputs = {
     order_note: string;
@@ -15,6 +16,7 @@ type Inputs = {
 export default function PlaceOrder() {
     const [gstAmount, setGstAmount] = useState(0)
     const { totalPrice, totalProduct, carts } = useAppSelector((state: RootState) => state.cart);
+    const { device_token } = useAppSelector((state: RootState) => state.auth);
     const { address: delivery_address } = useAppSelector((state: RootState) => state.address);
     // const { data: tables, isLoading: isLoadingTables, isSuccess: isSuccessTables } = useGetTablesQuery(undefined)
     const [placeOrder, { isSuccess: isSuccessPlaceOrder, isLoading: isLoadingPlaceOrder, isError: isErrorPlaceOrder }] = usePlaceOrderMutation()
@@ -22,7 +24,7 @@ export default function PlaceOrder() {
 
     const { register, handleSubmit } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = data => {
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const obj = {
             ...data,
             carts,
@@ -35,10 +37,17 @@ export default function PlaceOrder() {
             guest_id: 2,
         }
 
-        console.log(JSON.stringify(obj))
+        const result = await axios.post("https://staging.modifii.com/api/v1/olo/order/place", obj, {
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + device_token
+            }
+        })
 
         placeOrder(obj)
+        console.log(result)
     }
+
 
     useEffect(() => {
         if (isSuccessPlaceOrder) {
@@ -46,11 +55,13 @@ export default function PlaceOrder() {
         }
     }, [isSuccessPlaceOrder])
 
+
     useEffect(() => {
         if (isErrorPlaceOrder) {
             toast.error("Order place failed")
         }
     }, [isErrorPlaceOrder])
+
 
     useEffect(() => {
         const result = calculateGST(totalPrice, 5);
@@ -58,6 +69,7 @@ export default function PlaceOrder() {
 
     }, [totalPrice])
 
+    
     // let tableOptions;
 
     // if (isLoadingTables) {
@@ -108,7 +120,6 @@ export default function PlaceOrder() {
                                 <select {...register("payment_method")} className="select select-bordered">
                                     <option value="cash_on_delivery">Cash on delivery</option>
                                     <option value="credit_debit_card">Credit/Debit card</option>
-                                    <option value="wallet">Wallet</option>
                                 </select>
                             </label>
 

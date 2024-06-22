@@ -1,13 +1,28 @@
 import { FaCartPlus, FaPlus } from "react-icons/fa6";
 import { ICartItem, IProduct } from "../types";
 import AddToCartButton from "./button/AddToCartButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TiMinus } from "react-icons/ti";
 
 export default function ItemCard({ product }: { product: IProduct }) {
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [itemQuantity, setItemQuantity] = useState(1)
-    const { id, description, name, price, product_type } = product
+    const [kitchenNote, setKitchenNote] = useState("")
+    const [itemVariations, setItemVariations] = useState("")
+    const { id, description, name, price, product_type, variations } = product
+
+    // useEffect(() => {
+    //     setItemQuantity(1)
+    // }, [openModal])
+
+    useEffect(() => {
+        if (variations != "[]") {
+            const data = JSON.parse(variations);
+            if (data?.length > 0) {
+                setItemVariations(data[0]?.name)
+            }
+        }
+    }, [variations])
 
     const cartItem: ICartItem = {
         id: id.toString(),
@@ -16,8 +31,8 @@ export default function ItemCard({ product }: { product: IProduct }) {
         price,
         quantity: itemQuantity,
         type: product_type,
-        variant: "",
-        variations: "",
+        variations: itemVariations,
+        kitchen_note: kitchenNote
     }
 
     function handleIncreaseQuantity() {
@@ -54,7 +69,7 @@ export default function ItemCard({ product }: { product: IProduct }) {
                         </div>
 
                         <div className="w-ful">
-                            <input type="text" placeholder="Special instructions..." className="input input-bordered w-full font-semibold" />
+                            <input type="text" name="kitchen_note" value={kitchenNote} onChange={e => setKitchenNote(e.target.value)} placeholder="Special instructions..." className="input input-bordered w-full font-semibold" />
                         </div>
 
                         <div className="flex justify-between items-center">
@@ -77,7 +92,7 @@ export default function ItemCard({ product }: { product: IProduct }) {
                             </div>
 
                             <div className="card-actions justify-end">
-                                <AddToCartButton quantity={itemQuantity} className="" cartItem={cartItem}>
+                                <AddToCartButton cartItem={cartItem}>
                                     <button onClick={() => setOpenModal(false)} className="btn btn-md md:btn-sm lg:btn-md text-white text-base bg-brand-600 hover:bg-brand-500">
                                         <FaCartPlus />
                                         Add To Cart

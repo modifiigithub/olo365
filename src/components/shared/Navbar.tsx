@@ -107,9 +107,9 @@ export default function Navbar() {
                                     {
                                         carts?.length > 0 ? carts?.map((cart: ICartItem) =>
                                             <tr key={cart.id}>
-                                                <th>{cart.quantity}</th>
+                                                <th>{cart.quantity}x</th>
                                                 <td>
-                                                    <span className="md:text-base">{cart.name}</span>
+                                                    <span className="md:text-base font-semibold">{cart.name}</span>
                                                     <p className="flex gap-2 mt-2">
                                                         <RemoveToCartButton removeItem={cart} removeType="quantity">
                                                             <button className="btn btn-sm">

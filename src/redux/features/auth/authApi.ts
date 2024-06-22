@@ -5,7 +5,6 @@ export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProfileInfo: builder.query({
             query: (data) => {
-                console.log(data)
                 return {
                     url: `${base_url.AUTH_API_URL}/get-profile`,
                     headers: data.headers,

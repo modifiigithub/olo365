@@ -31,8 +31,10 @@ export default function TopHorizontalCategoryList() {
                     isSuccessCategories && categories?.slice(0, 3)?.map((category: ICategory) =>
                         <div key={category.id}>
                             <p onClick={() => handleCategoryFilter(category)}
-                                className={`${stateCategory?.id === category?.id ? "bg-brand-600 text-white" : "bg-brand-100"} px-3 mr-3 text-sm cursor-pointer font-bold p-2 rounded-lg`}
-                            >{category.name}</p>
+                                className={`${stateCategory?.id === category?.id ? "bg-brand-600 text-white hover:bg-brand-700" : "bg-brand-100"} px-3 mr-3 text-sm cursor-pointer font-bold p-2 rounded-lg`}
+                            >
+                                {category.name}
+                            </p>
                         </div>
                     )
                 }
@@ -48,9 +50,12 @@ export default function TopHorizontalCategoryList() {
                 </div>
                 <ul tabIndex={10} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 md:w-[50vw] md:h-80 md:overflow-y-scroll">
                     {
-                        isSuccessCategories && categories?.slice(4, categories?.length - 1).map((category: ICategory) => <li onClick={() => handleCategoryFilter(category)}>
-                            <a className={`${stateCategory?.id === category?.id ? "bg-brand-600 text-white" : ""} `}>{category?.name}</a>
-                        </li>)
+                        isSuccessCategories && categories?.slice(4, categories?.length - 1).map((category: ICategory) =>
+                            <li onClick={() => handleCategoryFilter(category)}>
+                                <a className={`${stateCategory?.id === category?.id ? "bg-brand-600 text-white hover:bg-brand-700" : ""} `}>
+                                    {category?.name}
+                                </a>
+                            </li>)
                     }
                 </ul>
             </div>

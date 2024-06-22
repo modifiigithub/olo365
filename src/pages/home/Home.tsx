@@ -11,7 +11,6 @@ import SearchItemContainer from "../../components/SearchItemContainer";
 import TopHorizontalCategoryList from "../../components/TopHorizontalCategoryList";
 import OrderItemList from "../../components/OrderItemList";
 import BottomDrawer from "../../components/drawer/BottomCartDrawer";
-import InfiniteScroll from "react-infinite-scroll-component";
 // const SidebarCategoryList = lazy(() => import('../../components/SidebarCategoryList'));
 const CategoryProducts = lazy(() => import('../../components/CategoryProducts'));
 
@@ -41,24 +40,18 @@ export default function Home() {
 
             <div className="container">
                 <FilterAction />
-                <div className="grid grid-cols-12 gap-6">
+                <div className="grid grid-cols-12 gap-6 pb-10">
                     <div className="col-span-12 lg:col-span-9">
                         <Suspense fallback={<Loader />}>
                             <TopHorizontalCategoryList />
 
                             <div className="col-span-12 md:col-span-10">
-                                {/* <InfiniteScroll
-                                    dataLength={categories?.length ? categories?.length : 0}
-                                    hasMore={true}
-                                    loader={<Loader />}
-                                >
-                                </InfiniteScroll> */}
-                                    {content}
+                                {content}
                             </div>
                         </Suspense>
                     </div>
                     <div className="col-span-12 lg:col-span-3">
-                        <div className="sticky top-28">
+                        <div className="sticky top-20">
                             <OrderItemList />
                         </div>
                     </div>

@@ -2,8 +2,10 @@ import { useState } from "react"
 import heroImage from "../assets/images/hero-bg.jpg"
 import { IoMdClose } from "react-icons/io"
 import { FiExternalLink } from "react-icons/fi"
-import { FaShop } from "react-icons/fa6"
+import { FaShop, FaTableList } from "react-icons/fa6"
 import { SiDoordash } from "react-icons/si"
+import { IoBagHandle } from "react-icons/io5"
+import { TbTruckDelivery } from "react-icons/tb"
 
 function TableBookSection() {
     const [bookTableDate, setBookTableDate] = useState<string | null>(null)
@@ -86,6 +88,7 @@ export default function Hero() {
     const [bookTable, setBookTable] = useState<boolean>(false)
     const [delivery, setDelivery] = useState<boolean>(false)
     const [pickup, setPickup] = useState<boolean>(false)
+    const [pickupType, setPickupType] = useState<"now" | "late">()
 
     function openBookTable() {
         setBookTable(true)
@@ -134,15 +137,26 @@ export default function Hero() {
             <div className="modal" role="dialog">
                 <div className="modal-box w-11/12 max-w-2xl relative px-10">
                     <h3 className="font-bold text-3xl text-center">Choose A Service</h3>
-                    <div className="flex justify-center items-center gap-2 md:gap-6 mt-8">
+                    <div className="flex justify-center items-center gap-2 md:gap-6 mt-10">
                         <button onClick={openPickup} className={`${pickup ? "bg-base-200" : ""} hover:bg-base-300 w-full h-24 text-xl font-semibold rounded-lg`}>
-                            Pickup
+                            <p className="flex flex-col justify-center items-center gap-2">
+                                <IoBagHandle className="md:text-3xl" />
+                                <span className="text-base md:text-xl">Pickup</span>
+                            </p>
                         </button>
                         <button onClick={openDelivery} className={`${delivery ? "bg-base-200" : ""} hover:bg-base-300 w-full h-24 text-xl font-semibold rounded-lg`}>
-                            Delivery
+                            <p className="flex flex-col justify-center items-center gap-2">
+                                <TbTruckDelivery className="md:text-3xl" />
+                                <span className="text-base md:text-xl">Delivery</span>
+                            </p>
+
                         </button>
                         <button onClick={openBookTable} className={`${bookTable ? "bg-base-200" : ""} hover:bg-base-300 w-full h-24 text-xl font-semibold rounded-lg`}>
-                            Book Table
+
+                            <p className="flex flex-col justify-center items-center gap-2">
+                                <FaTableList className="md:text-3xl" />
+                                <span className="text-base md:text-xl">Book Table</span>
+                            </p>
                         </button>
                     </div>
 
@@ -194,15 +208,15 @@ export default function Hero() {
                     {pickup && <div className="text-center my-10">
                         <h2 className="text-lg mb-4 font-medium">When Would You Like Your Order</h2>
                         <div className="flex justify-center gap-4">
-                            <button className="btn btn-lg">
+                            <button onClick={() => setPickupType("late")} className={`btn btn-lg ${pickupType === "late" ? "bg-base-300" : "bg-white"}`}>
                                 Later
                             </button>
-                            <button className="btn btn-lg">
+                            <button onClick={() => setPickupType("now")} className={`btn btn-lg ${pickupType === "now" ? "bg-base-300" : "bg-white"}`}>
                                 Now
                             </button>
                         </div>
 
-                        <form>
+                        {pickupType && <form>
                             <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-center w-full mt-6">Select Date</span>
@@ -249,7 +263,7 @@ export default function Hero() {
                                     <option value="9:40 pm">9:40 pm</option>
                                 </select>
                             </label>
-                        </form>
+                        </form>}
                     </div>}
 
                     <label htmlFor="book-table-modal" className="w-8 h-8 flex justify-center items-center cursor-pointer bg-slate-200 hover:bg-slate-300 rounded-full absolute top-2 right-2">

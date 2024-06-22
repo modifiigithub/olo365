@@ -16,18 +16,15 @@ type Inputs = {
 }
 
 export default function ProfileInfo() {
-  const { user } = useAppSelector((state: RootState) => state.auth)
   const { device_token } = useAppSelector((state: RootState) => state.auth)
   const [updateProfileInfo, { isSuccess: isSuccessUpdateProfile }] = useUpdateProfileInfoMutation()
-  const { isSuccess: isSuccessFetchProfile, data: profile } = useGetProfileInfoQuery({
+  const { data: profile } = useGetProfileInfoQuery({
     headers: {
       "authorization": "Bearer " + device_token
     }
   }, {
     skip: device_token ? false : true
   })
-
-  isSuccessFetchProfile && console.log(profile)
 
   const {
     register,
@@ -53,14 +50,14 @@ export default function ProfileInfo() {
     <div className="min-h-[80vh]">
       <h3 className="text-2xl font-bold">User Information</h3>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="my-4">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-3">
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">Email</span>
               </div>
-              <input type="text" readOnly value={user?.email} className="input input-bordered w-full" />
+              <input type="text" readOnly value={profile?.data?.email || ""} className="input input-bordered w-full" />
             </label>
           </div>
           <div className="col-span-12 lg:col-span-3">
@@ -68,7 +65,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Name</span>
               </div>
-              <input type="text" {...register("name")} defaultValue={user?.name} className="input input-bordered w-full" />
+              <input type="text" {...register("name")} defaultValue={profile?.data?.name || ""} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -77,16 +74,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Address</span>
               </div>
-              <input type="text" {...register("address")} defaultValue={user?.address || ''} className="input input-bordered w-full" />
-            </label>
-          </div>
-
-          <div className="col-span-12 lg:col-span-3">
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">Phone</span>
-              </div>
-              <input type="text" {...register("phone")} defaultValue={user?.phone || ''} className="input input-bordered w-full" />
+              <input type="text" {...register("address")} defaultValue={profile?.data?.address || ''} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -95,7 +83,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Country</span>
               </div>
-              <input type="text" {...register("country")} defaultValue={user?.country || ''} className="input input-bordered w-full" />
+              <input type="text" {...register("country")} defaultValue={profile?.data?.country || ''} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -104,16 +92,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">City</span>
               </div>
-              <input type="text" {...register("city")} defaultValue={user?.city || ''} className="input input-bordered w-full" />
-            </label>
-          </div>
-
-          <div className="col-span-12 lg:col-span-3">
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">Phone</span>
-              </div>
-              <input type="text" {...register("phone")} defaultValue={user?.phone || ''} className="input input-bordered w-full" />
+              <input type="text" {...register("city")} defaultValue={profile?.data?.city || ''} className="input input-bordered w-full" />
             </label>
           </div>
 
@@ -122,7 +101,7 @@ export default function ProfileInfo() {
               <div className="label">
                 <span className="label-text">Country Phone Code</span>
               </div>
-              <select {...register("phone_code")} defaultValue={user?.phone_code || ''} className="input input-bordered w-full">
+              <select {...register("phone_code")} defaultValue={profile?.data?.phone_code || ''} className="input input-bordered w-full">
                 <option value="+1">+1 United States</option>
                 <option value="+44">+44 United Kingdom</option>
                 <option value="+91">+91 India</option>
@@ -140,16 +119,23 @@ export default function ProfileInfo() {
             </label>
           </div>
 
+          <div className="col-span-12 lg:col-span-3">
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text">Phone</span>
+              </div>
+              <input type="text" {...register("phone")} defaultValue={profile?.data?.phone || ''} className="input input-bordered w-full" />
+            </label>
+          </div>
 
           <div className="col-span-12 lg:col-span-3">
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">Zip Code</span>
               </div>
-              <input type="text" {...register("zip_code")} defaultValue={user?.zip_code || ''} className="input input-bordered w-full" />
+              <input type="text" {...register("zip_code")} defaultValue={profile?.data?.zip_code || ''} className="input input-bordered w-full" />
             </label>
           </div>
-
         </div>
 
         <div>

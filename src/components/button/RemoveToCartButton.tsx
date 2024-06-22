@@ -14,14 +14,14 @@ export default function RemoveToCartButton({ removeItem, children, removeType = 
     const dispatch = useAppDispatch()
 
     function handleRemoveToCart(item: ICartItem) {
-        const { id, description, name, price, type } = item || {}
+        const { id, description, name, price, type , kitchen_note } = item || {}
 
         const obj: ICartItem = {
             id: id?.toString(),
             description, name, price, quantity: 1,
             type,
             variations: "Testing variations",
-            variant: "Testing variant",
+            kitchen_note
         }
 
         if (removeType === "quantity") {

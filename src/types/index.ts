@@ -52,7 +52,7 @@ export interface ICartItem {
     description: string;
     quantity: number;
     variations: string;
-    variant: string;
+    kitchen_note: string;
 }
 
 export interface ITable {
